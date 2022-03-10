@@ -1,3 +1,15 @@
 <template>
+
   
 </template>
+
+<script>
+export default {
+    mounted() {
+    this.socket = this.$nuxtSocket({
+      channel: '/index',
+      withCredentials: true
+    })
+  },
+}
+</script>
