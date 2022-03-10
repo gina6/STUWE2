@@ -5,8 +5,10 @@
     top: point.y + 'px', 
     left: point.x + 'px',
   })
-
-  watchEffect(() => { console.log(stylePosition); })
+  watchEffect(() => { 
+    stylePosition.left = point.x + 'px'
+    stylePosition.top = point.y + 'px'
+  })
 </script>
 <template>
   <div class="player" :style="stylePosition" ></div>

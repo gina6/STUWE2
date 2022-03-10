@@ -6,27 +6,31 @@
     {id: 1, x: 300, y: 300, score: 0},
     {id: 2, x: 400, y: 300, score: 0}
   ]) 
-  console.log(playerPosition[0].x);
-  // watchEffect(() => {
-  //   playerPosition.forEach(player =>
-  //     let dx = pointPosition.x - player.x; 
-  //     let dy = pointPosition.y - player.y;
-  //     let distance = Math.sqrt(dx * dx + dy * dy);
-  //     // distance < (pointradius + playerradius) => collision
-  //     if (distance < 65) {
-  //       score += 1
-  //     }
-  //   )
-  // })
+  watchEffect(() => {
+    collectTest(pointPosition[0], playerPosition[0])
+  })
+  
+  function collectTest(point, player) {
+    let dx = (point.x + 40) - (player.x + 25)
+    let dy = (point.y + 40) - (player.y + 25)
+    let distance = Math.sqrt(dx * dx + dy * dy)
+    // distance < (pointradius + playerradius) => collect
+    if (distance < 65) {
+      player.score += 1
+      point.x = Math.floor(Math.random() * 500)
+      point.y = Math.floor(Math.random() * 500)
+    }
+  }
+
 </script>
 <template>
   <div>
     <button @click="playerPosition.push({id: Math.floor(Math.random() * 100), x: Math.floor(Math.random() * 500), y: Math.floor(Math.random() * 500), score: 0})" >New Player</button>
-    <button @click="playerPosition[0].x -= 10" >Left</button>
-    <button @click="playerPosition[0].x += 10" >Right</button>
-    <button @click="playerPosition[0].y -= 10" >Up</button>
-    <button @click="playerPosition[0].y += 10" >Down</button>
-    <Point :x="100" :y="200"/>
+    <button @click="playerPosition[0].x -= 25" >Left</button>
+    <button @click="playerPosition[0].x += 25" >Right</button>
+    <button @click="playerPosition[0].y -= 25" >Up</button>
+    <button @click="playerPosition[0].y += 25" >Down</button>
+    <Point :x="pointPosition[0].x" :y="pointPosition[0].y"/>
     <Player 
       v-for="player in playerPosition"
       :key="player.id"
