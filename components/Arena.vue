@@ -1,0 +1,48 @@
+<script setup>
+  const pointPosition = reactive([
+    {id: 1, x: 100, y: 200}
+  ]) 
+  const playerPosition = reactive([
+    {id: 1, x: 300, y: 300, score: 0},
+    {id: 2, x: 400, y: 300, score: 0}
+  ]) 
+  watchEffect(() => {
+    collectTest(pointPosition[0], playerPosition[0])
+  })
+  
+  function collectTest(point, player) {
+    let dx = (point.x + 40) - (player.x + 25)
+    let dy = (point.y + 40) - (player.y + 25)
+    let distance = Math.sqrt(dx * dx + dy * dy)
+    // distance < (pointradius + playerradius) => collect
+    if (distance < 65) {
+      player.score += 1
+      point.x = Math.floor(Math.random() * 500)
+      point.y = Math.floor(Math.random() * 500)
+    }
+  }
+
+</script>
+<template>
+  <div>
+    <button @click="playerPosition.push({id: Math.floor(Math.random() * 100), x: Math.floor(Math.random() * 500), y: Math.floor(Math.random() * 500), score: 0})" >New Player</button>
+    <button @click="playerPosition[0].x -= 25" >Left</button>
+    <button @click="playerPosition[0].x += 25" >Right</button>
+    <button @click="playerPosition[0].y -= 25" >Up</button>
+    <button @click="playerPosition[0].y += 25" >Down</button>
+    <Point :x="pointPosition[0].x" :y="pointPosition[0].y"/>
+    <Player 
+      v-for="player in playerPosition"
+      :key="player.id"
+      :x="player.x"
+      :y="player.y"
+      :score="player.score"
+    ></Player>
+  </div>
+</template>
+<style lang="scss" scoped>
+div{
+  height: 100%;
+  width: 100%;
+}
+</style>

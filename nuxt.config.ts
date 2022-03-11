@@ -11,5 +11,14 @@ export default defineNuxtConfig({
     buildModules: [
         '@vueuse/nuxt',
     ],
+  vite: {
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@import "@/assets/scss/main.scss";',
+            },
+        },
+    },
+  }
 })
 
