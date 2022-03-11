@@ -6,10 +6,7 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
+    "@vueuse/nuxt": "^8.0.0",
     "nuxt3": "latest"
-  },
-  "dependencies": {
-    "nuxt-socket-io": "^3.0.5",
-    "socket.io": "^4.4.1"
   }
 }
