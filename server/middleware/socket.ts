@@ -12,12 +12,29 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     io.on('connection', (socket) => {
       console.log('Made socket connection');
 
-      socket.on('msg', (msg) => {
-        console.log('Recived: ' + msg)
+      socket.on('up', (steps) => {
+        console.log('up');
+        io.emit('moveUp', (steps));
+      })
 
-        setTimeout(() => {
-          socket.emit('msg', `Response to: ${msg}`)
-        }, 1000)
+      socket.on('down', (steps) => {
+        console.log('down');
+        io.emit('moveDown', (steps));
+      })
+
+      socket.on('left', (steps) => {
+        console.log('left');
+        io.emit('moveLeft', (steps));
+      })
+
+      socket.on('right', (steps) => {
+        console.log('right');
+        io.emit('moveRight', (steps));
+      })
+
+      socket.on('newPlayer', (playerData) => {
+        console.log('newPlayer');
+        io.emit('addPlayer', (playerData));
       })
 
       socket.on('disconnect', () => console.log('disconnected'))

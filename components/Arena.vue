@@ -1,4 +1,27 @@
 <script setup>
+   import { io } from "socket.io-client";
+  let socket = io.connect('http://192.168.1.39:3000/');
+
+  socket.on('moveUp', (step) => {
+    playerPosition[0].y -= step;
+  });
+
+  socket.on('moveDown', (step) => {
+    playerPosition[0].y += step;
+  });
+
+  socket.on('moveLeft', (step) => {
+    playerPosition[0].x -= step;
+  });
+
+  socket.on('moveRight', (step) => {
+    playerPosition[0].x += step;
+  });
+
+  socket.on('addPlayer', (playerData) => {
+    playerPosition.push(playerData);
+  })
+
   const pointPosition = reactive([
     {id: 1, x: 100, y: 200}
   ]) 
@@ -25,11 +48,6 @@
 </script>
 <template>
   <div>
-    <button @click="playerPosition.push({id: Math.floor(Math.random() * 100), x: Math.floor(Math.random() * 500), y: Math.floor(Math.random() * 500), score: 0})" >New Player</button>
-    <button @click="playerPosition[0].x -= 25" >Left</button>
-    <button @click="playerPosition[0].x += 25" >Right</button>
-    <button @click="playerPosition[0].y -= 25" >Up</button>
-    <button @click="playerPosition[0].y += 25" >Down</button>
     <Point :x="pointPosition[0].x" :y="pointPosition[0].y"/>
     <Player 
       v-for="player in playerPosition"
