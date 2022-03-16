@@ -1,6 +1,6 @@
 <script setup>
    import { io } from "socket.io-client";
-  let socket = io.connect('https://thefasterone.mariahusmann.ch/');
+   let socket = io.connect('https://thefasterone.herokuapp.com/');
 
   socket.on('moveUp', (step) => {
     playerPosition[0].y -= step;
