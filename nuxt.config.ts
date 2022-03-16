@@ -19,6 +19,9 @@ export default defineNuxtConfig({
             },
         },
     },
+  },
+  server: {
+    port: 8080
   }
 })
 
