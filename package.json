@@ -10,8 +10,7 @@
     "nuxt3": "latest",
     "sass": "^1.49.9",
     "sass-loader": "^10.2.1",
-    "@vueuse/core": "^8.0.1",
-    "esbuild-darwin-64": "^0.14.27"
+    "@vueuse/core": "^8.0.1"
   },
   "dependencies": {
     "express": "^4.17.3",
