@@ -3,5 +3,5 @@
 </script>
 
 <template>
-<h1>Controller</h1>
+<h1>Player 1</h1>
 </template>
