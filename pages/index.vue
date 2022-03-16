@@ -14,25 +14,60 @@ import { onMounted } from 'vue';
       console.log('disconnected');
       console.log(socket.connected);
     });
+
+    useMeta({
+      bodyAttrs: {
+        style: `background-color: #080A29`
+      }
+    })
   })
+
 </script>
 
 <template>
   <div>
-    <h1>Home Page</h1>
-    <NuxtLink to="/display/reactionGame" class="start">Start</NuxtLink>
-
+    <!-- <div class="background">
+      <div class="line" />
+    </div> -->
+    <h1>The Faster One</h1>
+    <div class="content">
+      <Qrcode />
+      <div class="players">
+        <PlayerPreview :number="1" />
+        <PlayerPreview :number="2" />
+        <PlayerPreview :number="3" />
+        <PlayerPreview :number="4" />
+        <Button />
+      </div>
+    </div>
   </div>
 </template>
-
 <style lang="scss" scoped>
-.start {
-  color: $color-white;
-  font-size: 1rem;
-  background-color: $color-black;
-  padding: 1rem, 2rem;
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
+
+div { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: auto;
+
+  h1 {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 120px;
+    line-height: 144px;
+    color: $color-white;
+    text-transform: uppercase;
+    text-shadow: 0px 4px 4px rgba($color-black, 0.5);
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .players {
+    
+  }
 }
 </style>
