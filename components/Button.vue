@@ -1,10 +1,12 @@
 <script setup>
-  const isActive = ref(true)
+  const button = defineProps(['route', 'active'])
 </script>
 
 <template>
   <div>
-    <NuxtLink to="/display/reactionGame" class="button" :class="{ active: isActive }">Play</NuxtLink>
+    <NuxtLink :to="button.route" class="button" :class="{ active: button.active }">
+      <slot />
+    </NuxtLink>
   </div>
 </template>
 

@@ -17,7 +17,8 @@ import { onMounted } from 'vue';
 
     useMeta({
       bodyAttrs: {
-        style: `background-color: #080A29`
+        class: 'body',
+        style: `background: #080A29 url(../public/thefasterone_background_texture.svg) no-repeat center`
       }
     })
   })
@@ -36,7 +37,7 @@ import { onMounted } from 'vue';
           <PlayerPreview :number="3" :color="`#FF8426`" :active="false" />
           <PlayerPreview :number="4" :color="`#4CC38A`" :active="false" />
         </div>
-        <Button />
+        <Button :route="'/arena'" :active="true">Play</Button>
       </div>
     </div>
   </div>
