@@ -1,17 +1,18 @@
-<script setup>
-  // import { useQRCode } from '@vueuse/integrations/useQRCode'
-  // const host = window.location.protocol + "//" + window.location.host + "/controller/reactionController";
-  // console.log(host);
-  // const text = ref('http://10.155.116.40:3000/controller/reactionController')
-  // const qrcode = useQRCode(text, {
-  //   errorCorrectionLevel: 'H',
-  //   margin: 3,
-  // })
+<script>
+import { useQRCode } from '@vueuse/integrations/useQRCode'
+
+export default {
+  setup() {
+    const qrcode = useQRCode('https://thefasterone.herokuapp.com/controller/reactionController');
+    return qrcode;
+  }
+}
+
 </script>
 <template>
   <div>
     <p>Scan <br> to join</p>
-    <!-- <img v-if="text" :src="qrcode" alt="QR Code"> -->
+    <img :src="qrcode" alt="QR Code">
   </div>
 </template>
 <style lang="scss" scoped>
