@@ -6,20 +6,20 @@
     console.log(accelerationData.x);
   })
 
-  socket.on('moveUp', (acceleration) => {
-    playerPosition[0].y -= acceleration;
+  socket.on('moveUp', (steps) => {
+    playerPosition[0].y -= steps;
   });
 
-  socket.on('moveDown', (acceleration) => {
-    playerPosition[0].y += acceleration;
+  socket.on('moveDown', (steps) => {
+    playerPosition[0].y += steps;
   });
 
-  socket.on('moveLeft', (acceleration) => {
-    playerPosition[0].x -= acceleration;
+  socket.on('moveLeft', (steps) => {
+    playerPosition[0].x -= steps;
   });
 
-  socket.on('moveRight', (acceleration) => {
-    playerPosition[0].x += acceleration;
+  socket.on('moveRight', (steps) => {
+    playerPosition[0].x += steps;
   });
 
   socket.on('addPlayer', (playerData) => {

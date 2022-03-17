@@ -28,16 +28,16 @@ export default {
     },
 
     up() {
-      socket.emit("up", acceleration.y);
+      socket.emit("up", steps);
     },
     down() {
-      socket.emit("down", acceleration.y);
+      socket.emit("down", steps);
     },
     left() {
-      socket.emit("left", acceleration.x);
+      socket.emit("left", steps);
     },
     right() {
-      socket.emit("right", acceleration.x);
+      socket.emit("right", steps);
     },
     newPlayer() {
       socket.emit("newPlayer", {
