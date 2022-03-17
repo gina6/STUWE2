@@ -17,12 +17,13 @@
 <style lang="scss" scoped>
 div {
   width: auto;
-  height: auto;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   padding: 3rem;
 
-  background: rgba($rgb-grey, 0.2);
+  background: rgba(24, 26, 58, 0.8);
   box-shadow: 0px 4px 4px rgba($rgb-white, 0.25);
   border-radius: 20px;
   p {

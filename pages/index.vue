@@ -25,18 +25,17 @@ import { onMounted } from 'vue';
 </script>
 
 <template>
-  <div>
-    <!-- <div class="background">
-      <div class="line" />
-    </div> -->
+  <div class="wrapper">
     <h1>The Faster One</h1>
     <div class="content">
       <Qrcode />
-      <div class="players">
-        <PlayerPreview :number="1" />
-        <PlayerPreview :number="2" />
-        <PlayerPreview :number="3" />
-        <PlayerPreview :number="4" />
+      <div class="content-right">
+        <div class="players">
+          <PlayerPreview :number="1" :color="`#00C2D7`" :active="true" />
+          <PlayerPreview :number="2" :color="`#DB53B0`" :active="true" />
+          <PlayerPreview :number="3" :color="`#FF8426`" :active="false" />
+          <PlayerPreview :number="4" :color="`#4CC38A`" :active="false" />
+        </div>
         <Button />
       </div>
     </div>
@@ -51,8 +50,13 @@ div {
   align-items: center;
   height: auto;
   width: auto;
+  .wrapper {
+    width: 1440px;
+    margin: 5rem auto 0 auto;
+  }
 
   h1 {
+    position: relative;
     font-style: italic;
     font-weight: 700;
     font-size: 120px;
@@ -60,14 +64,47 @@ div {
     color: $color-white;
     text-transform: uppercase;
     text-shadow: 0px 4px 4px rgba($color-black, 0.5);
+
+    &::after {
+      background-color: $color-purple;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 1340px;
+      z-index: -1;
+      content: '';
+      border: 40px solid rgba($rgb-white, 0.16);
+      box-shadow: 0px 0px 63.9186px $color-purple, inset 0px 0px 31.9593px $color-purple;
+      filter: blur(25px);
+    }
   }
   .content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-  .players {
-    
+    margin-top: 5rem;
+    width: 100%;
+    height: 600px;
+
+    .content-right {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      .players {
+        width: 412px;
+        height: 412px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+    }
   }
 }
 </style>

@@ -1,20 +1,24 @@
-// rgba
-$color-black: rgba(0, 0, 0, 1);
-$color-grey: rgba(196, 196, 196, 1);
-$color-darkgrey: rgba(141, 137, 158, 1);
-$color-white: rgba(255, 255, 255, 1);
-$color-darkblue: rgba(8, 10, 41, 1);
-$color-purple: rgba(183, 108, 253, 1);
-$color-pink: rgb(216, 83, 209, 1);
-
 // rgb
 $rgb-black: rgb(0, 0, 0);
-$rgb-grey: rgb(196, 196, 196);
-$rgb-darkgrey: rgb(141, 137, 158);
+$rgb-grey: rgb(141, 137, 158);
 $rgb-white: rgb(255, 255, 255);
 $rgb-darkblue: rgb(8, 10, 41);
 $rgb-purple: rgb(183, 108, 253);
-$rgb-pink: rgb(216, 83, 209);
+$rgb-teal: rgb(0, 194, 215);
+$rgb-pink: rgb(219, 83, 176);
+$rgb-orange: rgb(255, 132, 38);
+$rgb-green: rgb(76, 195, 138);
+
+// rgba
+$color-black: rgba($rgb-black, 1);
+$color-grey: rgba($rgb-grey, 1);
+$color-white: rgba($rgb-white, 1);
+$color-darkblue: rgba($rgb-darkblue, 1);
+$color-purple: rgba($rgb-purple, 1);
+$color-teal: rgba($rgb-teal, 1);
+$color-pink: rgba($rgb-pink, 1);
+$color-orange: rgba($rgb-orange, 1);
+$color-green: rgba($rgb-green, 1);
 
 // icon
 $icon-check: url("data:image/svg+xml,%3Csvg width='38' height='38' viewBox='0 0 38 38' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_112_338)'%3E%3Cpath d='M19 0C8.50662 0 0 8.50662 0 19C0 29.4934 8.50662 38 19 38C29.4934 38 38 29.4934 38 19C38 8.50662 29.4934 0 19 0ZM19 4.12842C27.2134 4.12842 33.8693 10.7887 33.8693 19C33.8693 27.2113 27.2134 33.8693 19 33.8693C10.7866 33.8693 4.13073 27.2113 4.13073 19C4.13076 10.7887 10.7866 4.12842 19 4.12842ZM26.2804 9.97779L15.2682 20.9923L11.6964 17.4205L8.19188 20.9227L11.7637 24.4945L15.2914 28.0222L18.7936 24.5177L29.8081 13.5055L26.2804 9.97779V9.97779Z' fill='%2300C2D7'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_112_338'%3E%3Crect width='38' height='38' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
