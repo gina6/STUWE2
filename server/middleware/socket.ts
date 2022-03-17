@@ -12,20 +12,24 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     io.on('connection', (socket) => {
       console.log('Made socket connection');
 
-      socket.on('up', (steps) => {
-        io.emit('moveUp', (steps));
+      socket.on('playerMove', (accelerationData) => {
+        io.emit('playerMove', (accelerationData));
       })
 
-      socket.on('down', (steps) => {
-        io.emit('moveDown', (steps));
+      socket.on('up', (acceleration) => {
+        io.emit('moveUp', (acceleration));
       })
 
-      socket.on('left', (steps) => {
-        io.emit('moveLeft', (steps));
+      socket.on('down', (acceleration) => {
+        io.emit('moveDown', (acceleration));
       })
 
-      socket.on('right', (steps) => {
-        io.emit('moveRight', (steps));
+      socket.on('left', (acceleration) => {
+        io.emit('moveLeft', (acceleration));
+      })
+
+      socket.on('right', (acceleration) => {
+        io.emit('moveRight', (acceleration));
       })
 
       socket.on('newPlayer', (playerData) => {

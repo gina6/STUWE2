@@ -1,13 +1,17 @@
 <script setup>
-  const player = defineProps(['number', 'color'])
+  const player = defineProps(['number', 'color', 'active'])
 
-  const isActive = ref(true)
-  const styleColor = reactive({
-    color: player.color,
+  const backgroundActive = reactive({
+    backgroundColor: player.active ? `${player.color}33` : `rgba($rgb-grey, 0.2)`
   })
+
+  watchEffect(() => { 
+    backgroundActive.backgroundColor = player.active ? `${player.color}33` : `rgba($rgb-grey, 0.2)`
+  })
+
 </script>
 <template>
-  <div class="player" :class="{ active: isActive }">
+  <div class="player" :class="{ active: player.active }" :style="backgroundActive" >
     <p>Player {{ player.number }}</p>
     <div class="icon-check"></div>
   </div>
@@ -19,11 +23,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 5px solid #8D899E;
+  border: 5px solid $rgb-grey;
   padding: 2.5rem 1rem;
-
-  background: rgba($rgb-grey, 0.2);
+  background-color: rgba($rgb-grey, 0.2);
   border-radius: 20px;
+
   p {
     @include termina;
     font-weight: 700;
@@ -31,15 +35,25 @@
     line-height: 29px;
     text-align: center;
     text-transform: uppercase;
-    color: $color-darkgrey;
+    color: $color-grey;
     text-shadow: 0px 4px 4px rgba($rgb-black, 0.25);
   }
-  .active {
+    &.active {
+      border: 5px solid v-bind('player.color');
+
+      p {
+        color: v-bind('player.color');
+      }
+
     .icon-check {
+      display: inline-block;
+      mask-image: $icon-check;
+      mask-repeat: no-repeat;
+      mask-size: contain;
       width: 38px;
       height: 38px;
-      mask-image: $icon-check;
-      background-color: $color-pink;
+      background-size: 38px 38px;
+      background-color: v-bind('player.color');
     }
   }
 }

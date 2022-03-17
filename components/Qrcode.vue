@@ -1,28 +1,31 @@
-<script setup>
-  // import { useQRCode } from '@vueuse/integrations/useQRCode'
-  // const host = window.location.protocol + "//" + window.location.host + "/controller/reactionController";
-  // console.log(host);
-  // const text = ref('http://10.155.116.40:3000/controller/reactionController')
-  // const qrcode = useQRCode(text, {
-  //   errorCorrectionLevel: 'H',
-  //   margin: 3,
-  // })
+<script>
+// import { useQRCode } from '@vueuse/integrations/useQRCode'
+
+// export default {
+//   setup() {
+//     const qrcode = useQRCode('https://thefasterone.herokuapp.com/controller/reactionController');
+//     return qrcode;
+//   }
+// }
+
 </script>
 <template>
-  <div>
+  <div class="container">
     <p>Scan <br> to join</p>
-    <!-- <img v-if="text" :src="qrcode" alt="QR Code"> -->
+    <div class="qrcode"></div>
+    <!-- <img :src="qrcode" alt="QR Code"> -->
   </div>
 </template>
 <style lang="scss" scoped>
-div {
+.container {
   width: auto;
-  height: auto;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   padding: 3rem;
 
-  background: rgba($rgb-grey, 0.2);
+  background: rgba(24, 26, 58, 0.8);
   box-shadow: 0px 4px 4px rgba($rgb-white, 0.25);
   border-radius: 20px;
   p {
@@ -33,6 +36,15 @@ div {
     text-align: center;
     text-transform: uppercase;
     color: $color-white;
+  }
+  .qrcode {
+    display: inline-block;
+    background-image: $icon-qrcode;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 380px;
+    height: 380px;
+    background-size: 380px 380px;
   }
 }
 </style>

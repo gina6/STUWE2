@@ -1,6 +1,8 @@
 <script>
 import { io } from "socket.io-client";
 import { useDeviceMotion } from "@vueuse/core";
+import { watchEffect } from 'vue';
+
 const socket = io();
 const steps = 25;
 
@@ -12,6 +14,7 @@ export default {
       rotationRate,
       interval,
     } = useDeviceMotion();
+    watchEffect(() => playerMove(acceleration));
     return {
       acceleration,
       accelerationIncludingGravity,
@@ -20,17 +23,21 @@ export default {
     };
   },
   methods: {
+    playerMove(acceleration) {
+      socket.emit('playerMove', acceleration)
+    },
+
     up() {
-      socket.emit("up", steps);
+      socket.emit("up", acceleration.y);
     },
     down() {
-      socket.emit("down", steps);
+      socket.emit("down", acceleration.y);
     },
     left() {
-      socket.emit("left", steps);
+      socket.emit("left", acceleration.x);
     },
     right() {
-      socket.emit("right", steps);
+      socket.emit("right", acceleration.x);
     },
     newPlayer() {
       socket.emit("newPlayer", {
@@ -66,8 +73,6 @@ export default {
     <p>Rotation Alpha: {{ rotationRate.alpha }}</p>
     <p>Rotation Beta: {{ rotationRate.beta }}</p>
     <p>Rotation Gamma: {{ rotationRate.gamma }}</p>
-    <br>
-    <p>Intervall: {{ interval }}</p>
   </div>
 </template>
 
