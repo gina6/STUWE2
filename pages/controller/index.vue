@@ -7,95 +7,32 @@ const socket = io();
 
 const gyroData = reactive(useDeviceMotion());
 
-const playerPreview = reactive({ x: 100, y: 200, color: `#00c2d7` });
+const window = reactive(useWindowSize());
+
+const player = reactive(
+  { id: 1, x: window.width / 2, y: window.height / 2, color: `#00c2d7` } //'#070925'
+);
 
 watchEffect(() => {
   playerMove(gyroData.accelerationIncludingGravity);
 });
 
 function playerMove(accelerationIncludingGravity) {
-  playerPreview.x -= accelerationIncludingGravity.x;
-  playerPreview.y += accelerationIncludingGravity.y;
+  player.x -= accelerationIncludingGravity.x;
+  player.y += accelerationIncludingGravity.y;
   //socket.emit('playerMove', accelerationIncludingGravity)
 }
-
-const window = reactive(useWindowSize())
-
-const player = reactive(
-  {id: 1, x: window.width / 2, y: window.height / 2, color: `#00c2d7`} //'#070925'
-)
-
-const {
-  acceleration,
-  accelerationIncludingGravity,
-  rotationRate,
-  interval,
-} = useDeviceMotion();
-
 
 definePageMeta({
   layout: "custom",
 });
-
-function up() {
-  socket.emit("up", steps);
-}
-
-function down() {
-  socket.emit("down", steps);
-}
-
-function left() {
-  socket.emit("left", steps);
-}
-
-function right() {
-  socket.emit("right", steps);
-}
-
-function newPlayer() {
-  socket.emit("newPlayer", {
-    id: Math.floor(Math.random() * 100),
-    x: Math.floor(Math.random() * 500),
-    y: Math.floor(Math.random() * 500),
-    score: 0,
-  });
-}
 </script>
 
 <template>
   <div>
-    <h1>Player 1</h1>
-    <p>Acceleration X: {{ gyroData.accelerationIncludingGravity.x }}</p>
-    <p>Acceleration Y: {{ gyroData.accelerationIncludingGravity.y }}</p>
-    <Player
-      :x="playerPreview.x"
-      :y="playerPreview.y"
-      :color="playerPreview.color"
-    />
     <h1>Ready</h1>
     <h2>Player {{ player.id }}</h2>
     <ControllerPreview :x="player.x" :y="player.y" :color="player.color" />
-    <button @click="newPlayer">New Player</button>
-    <button @click="left">Left</button>
-    <button @click="right">Right</button>
-    <button @click="up">Up</button>
-    <button @click="down">Down</button>
-
-    <h3>Acceleration Data: </h3>
-    <p>Acceleration X: {{ acceleration.x }}</p>
-    <p>Acceleration Y: {{ acceleration.y }}</p>
-    <p>Acceleration Z: {{ acceleration.z }}</p>
-    <br>
-    <p>Acceleration Gravity X: {{ accelerationIncludingGravity.x }}</p>
-    <p>Acceleration Gravity Y: {{ accelerationIncludingGravity.y }}</p>
-    <p>Acceleration Gravity Z: {{ accelerationIncludingGravity.z }}</p>
-    <br>
-    <p>Rotation Alpha: {{ rotationRate.alpha }}</p>
-    <p>Rotation Beta: {{ rotationRate.beta }}</p>
-    <p>Rotation Gamma: {{ rotationRate.gamma }}</p>
-    <br>
-    <p>Intervall: {{ interval }}</p>
   </div>
 </template>
 
