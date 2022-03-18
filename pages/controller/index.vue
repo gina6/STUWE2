@@ -10,7 +10,9 @@ const { acceleration, accelerationIncludingGravity, rotationRate, interval } = u
 
 const playerPreview = reactive({x: 100, y: 200, color: `#00c2d7`});
 
-watchEffect(() => playerMove({accelerationIncludingGravity}));
+watchEffect(() => {
+  playerMove({accelerationIncludingGravity})
+});
 
 function playerMove({accelerationIncludingGravity}) {
   //socket.emit('playerMove', accelerationIncludingGravity)
