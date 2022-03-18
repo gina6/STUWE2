@@ -40,6 +40,7 @@ function newPlayer() {
 <template>
   <div>
     <h1>Player 1</h1>
+    <p>Acceleration: {{ accelerationIncludingGravity }}</p>
     <!-- <h1>Controller</h1>
     <button @click="newPlayer">New Player</button>
     <button @click="left">Left</button>
