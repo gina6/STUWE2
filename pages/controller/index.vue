@@ -12,6 +12,7 @@ watchEffect(() => playerMove({ accelerationIncludingGravity }));
 
 function playerMove({ accelerationIncludingGravity }) {
   //socket.emit('playerMove', accelerationIncludingGravity)
+  console.log(accelerationIncludingGravity);
 }
 
 function up() {
@@ -39,7 +40,7 @@ function newPlayer() {
 <template>
   <div>
     <h1>Player 1</h1>
-    <h1>Controller</h1>
+    <!-- <h1>Controller</h1>
     <button @click="newPlayer">New Player</button>
     <button @click="left">Left</button>
     <button @click="right">Right</button>
@@ -57,7 +58,7 @@ function newPlayer() {
     <br>
     <p>Rotation Alpha: {{ rotationRate.alpha }}</p>
     <p>Rotation Beta: {{ rotationRate.beta }}</p>
-    <p>Rotation Gamma: {{ rotationRate.gamma }}</p>
+    <p>Rotation Gamma: {{ rotationRate.gamma }}</p> -->
   </div>
 </template>
 
