@@ -12,7 +12,8 @@ watchEffect(() => playerMove(accelerationIncludingGravity));
 
 function playerMove(accelerationIncludingGravity) {
   //socket.emit('playerMove', accelerationIncludingGravity)
-  console.log(accelerationIncludingGravity);
+  console.log(accelerationIncludingGravity.x);
+  console.log(accelerationIncludingGravity.y);
 }
 
 function up() {
