@@ -6,7 +6,7 @@ import { watchEffect } from "vue";
 const socket = io();
 const steps = 25;
 
-const { acceleration, accelerationIncludingGravity, rotationRate, interval } = useDeviceMotion();
+const { acceleration, accelerationIncludingGravity, rotationRate, interval } = reactive(useDeviceMotion());
 
 const playerPreview = reactive({x: 100, y: 200, color: `#00c2d7`});
 
