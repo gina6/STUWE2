@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { io } from "socket.io-client";
-import { onMounted } from 'vue';
+  import { io } from "socket.io-client";
+  import { onMounted } from 'vue';
 
   onMounted(() => {
     const socket = io();
@@ -14,14 +14,11 @@ import { onMounted } from 'vue';
       console.log('disconnected');
       console.log(socket.connected);
     });
-
-    useMeta({
-      bodyAttrs: {
-        class: 'body',
-        style: `background: #080A29 url(../public/thefasterone_background_texture.svg) no-repeat center`
-      }
-    })
   })
+
+  definePageMeta({
+    layout: "custom",
+  });
 
 </script>
 
