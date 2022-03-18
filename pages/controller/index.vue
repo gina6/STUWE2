@@ -16,7 +16,7 @@ watchEffect(() => {
 
 function playerMove(accelerationIncludingGravity) {
   playerPreview.x -= accelerationIncludingGravity.x;
-  playerPreview.y -= accelerationIncludingGravity.y;
+  playerPreview.y += accelerationIncludingGravity.y;
   //socket.emit('playerMove', accelerationIncludingGravity)
 }
 
