@@ -8,12 +8,17 @@ const steps = 25;
 
 const { acceleration, accelerationIncludingGravity, rotationRate, interval } = useDeviceMotion();
 
-watchEffect(() => playerMove(accelerationIncludingGravity));
+const playerPreview = reactive({x: 100, y: 200, color: `#00c2d7`});
 
-function playerMove(accelerationIncludingGravity) {
+watchEffect(() => playerMove({accelerationIncludingGravity}));
+
+function playerMove({accelerationIncludingGravity}) {
   //socket.emit('playerMove', accelerationIncludingGravity)
-  console.log(accelerationIncludingGravity.x);
-  console.log(accelerationIncludingGravity.y);
+  console.log('Movement detected');
+  console.log(accelerationIncludingGravity);
+
+  playerPreview.x += accelerationIncludingGravity.x;
+  playerPreview.y += accelerationIncludingGravity.y;
 }
 
 function up() {
@@ -43,6 +48,7 @@ function newPlayer() {
     <h1>Player 1</h1>
     <p>Acceleration X: {{ accelerationIncludingGravity.x }}</p>
     <p>Acceleration Y: {{ accelerationIncludingGravity.y }}</p>
+    <Player :x="playerPreview.x" :y="playerPreview.y" :color="playerPreview.color"/>
     <!-- <h1>Controller</h1>
     <button @click="newPlayer">New Player</button>
     <button @click="left">Left</button>
