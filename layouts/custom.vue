@@ -3,7 +3,7 @@
     bodyAttrs: {
       class: 'body',
       style: [
-        `background: #080A29 url(../public/thefasterone_background_texture.svg) no-repeat top; background-size: cover;`
+        `background: #080A29 url(/thefasterone_background_texture.svg) no-repeat top; background-size: cover;`
       ]
     }
   })
