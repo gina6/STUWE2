@@ -8,7 +8,7 @@ const steps = 25;
 
 const { acceleration, accelerationIncludingGravity, rotationRate, interval } = useDeviceMotion();
 
-watchEffect(() => playerMove({ accelerationIncludingGravity }));
+watchEffect(() => playerMove( accelerationIncludingGravity ));
 
 function playerMove({ accelerationIncludingGravity }) {
   //socket.emit('playerMove', accelerationIncludingGravity)
