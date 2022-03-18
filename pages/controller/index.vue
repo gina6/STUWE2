@@ -15,7 +15,7 @@ watchEffect(() => playerMove({accelerationIncludingGravity}));
 function playerMove({accelerationIncludingGravity}) {
   //socket.emit('playerMove', accelerationIncludingGravity)
   console.log('Movement detected');
-  console.log(accelerationIncludingGravity);
+  console.log(accelerationIncludingGravity._rawValue);
 
   playerPreview.x += accelerationIncludingGravity._rawValue.x;
   playerPreview.y += accelerationIncludingGravity._rawValue.y;
