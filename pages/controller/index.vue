@@ -17,8 +17,8 @@ function playerMove({accelerationIncludingGravity}) {
   console.log('Movement detected');
   console.log(accelerationIncludingGravity);
 
-  playerPreview.x += accelerationIncludingGravity.x;
-  playerPreview.y += accelerationIncludingGravity.y;
+  playerPreview.x += accelerationIncludingGravity._rawValue.x;
+  playerPreview.y += accelerationIncludingGravity._rawValue.y;
 }
 
 function up() {
