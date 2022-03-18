@@ -1,54 +1,39 @@
-<script>
+<script setup>
 import { io } from "socket.io-client";
 import { useDeviceMotion } from "@vueuse/core";
-import { watchEffect } from 'vue';
+import { watchEffect } from "vue";
 
 const socket = io();
 const steps = 25;
 
-export default {
-  setup() {
-    const {
-      acceleration,
-      accelerationIncludingGravity,
-      rotationRate,
-      interval,
-    } = useDeviceMotion();
-    watchEffect(() => playerMove(acceleration));
-    return {
-      acceleration,
-      accelerationIncludingGravity,
-      rotationRate,
-      interval,
-    };
-  },
-  methods: {
-    playerMove(acceleration) {
-      socket.emit('playerMove', acceleration)
-    },
+const { acceleration, accelerationIncludingGravity, rotationRate, interval } = useDeviceMotion();
 
-    up() {
-      socket.emit("up", steps);
-    },
-    down() {
-      socket.emit("down", steps);
-    },
-    left() {
-      socket.emit("left", steps);
-    },
-    right() {
-      socket.emit("right", steps);
-    },
-    newPlayer() {
-      socket.emit("newPlayer", {
-        id: Math.floor(Math.random() * 100),
-        x: Math.floor(Math.random() * 500),
-        y: Math.floor(Math.random() * 500),
-        score: 0,
-      });
-    },
-  },
-};
+watchEffect(() => playerMove({ accelerationIncludingGravity }));
+
+function playerMove({ accelerationIncludingGravity }) {
+  //socket.emit('playerMove', accelerationIncludingGravity)
+}
+
+function up() {
+  socket.emit("up", steps);
+}
+function down() {
+  socket.emit("down", steps);
+}
+function left() {
+  socket.emit("left", steps);
+}
+function right() {
+  socket.emit("right", steps);
+}
+function newPlayer() {
+  socket.emit("newPlayer", {
+    id: Math.floor(Math.random() * 100),
+    x: Math.floor(Math.random() * 500),
+    y: Math.floor(Math.random() * 500),
+    score: 0,
+  });
+}
 </script>
 
 <template>
