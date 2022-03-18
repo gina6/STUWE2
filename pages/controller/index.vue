@@ -6,7 +6,7 @@ import { watchEffect } from "vue";
 const socket = io();
 const steps = 25;
 
-const { acceleration, accelerationIncludingGravity, rotationRate, interval } = reactive({useDeviceMotion()});
+const { acceleration, accelerationIncludingGravity, rotationRate, interval } = reactive(useDeviceMotion());
 
 const playerPreview = reactive({x: 100, y: 200, color: `#00c2d7`});
 
@@ -17,10 +17,10 @@ watchEffect(() => {
 function playerMove({accelerationIncludingGravity}) {
   //socket.emit('playerMove', accelerationIncludingGravity)
   console.log('Movement detected');
-  console.log(accelerationIncludingGravity._rawValue);
+  console.log(accelerationIncludingGravity);
 
-  playerPreview.x += accelerationIncludingGravity._rawValue.x;
-  playerPreview.y += accelerationIncludingGravity._rawValue.y;
+  playerPreview.x += accelerationIncludingGravity.x;
+  playerPreview.y += accelerationIncludingGravity.y;
 }
 
 function up() {
