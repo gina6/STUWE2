@@ -1,17 +1,28 @@
 <script setup>
   const indicator = defineProps(['x', 'y', 'color'])
-
+  
+  const beforeMount = ref(false)
   const stylePosition = reactive({
     top: indicator.y + 'px', 
-    left: indicator.x + 'px',
+    left: indicator.x + 'px'
   })
-  watchEffect(() => { 
-    stylePosition.left = indicator.x + 'px'
-    stylePosition.top = indicator.y + 'px'
+
+  const window = reactive(useWindowSize())
+
+  onBeforeMount(() => { 
+    watchEffect(() => { 
+      stylePosition.top = window.height * 0.5 + indicator.y + 'px'
+      stylePosition.left = window.width * 0.5 + indicator.x + 'px'
+      console.log(stylePosition.top);
+      console.log(stylePosition.left);
+    })
+    beforeMount.value = true;
   })
 </script>
 <template>
-  <div class="indicator" :style="stylePosition"></div>
+  <div>
+    <div v-if="beforeMount" class="indicator" :style="stylePosition"></div>
+  </div>
 </template>
 <style lang="scss" scoped>
 .indicator {

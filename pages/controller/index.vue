@@ -4,10 +4,8 @@ import { useDeviceMotion } from "@vueuse/core";
 const socket = io();
 const steps = 25;
 
-const window = reactive(useWindowSize())
-
 const player = reactive(
-  {id: 1, x: window.width / 2, y: window.height / 2, color: `#00c2d7`} //'#070925'
+  {id: 1, x: 0, y: 0, color: `#00c2d7`} //'#070925'
 )
 
 const {
