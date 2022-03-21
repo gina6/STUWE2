@@ -11,10 +11,10 @@
   })
 </script>
 <template>
-  <div class="player" :style="stylePosition" ></div>
+  <div class="point" :style="stylePosition" ></div>
 </template>
 <style lang="scss" scoped>
-.player {
+.point {
   position: absolute;
   width: 100px;
   height: 100px;

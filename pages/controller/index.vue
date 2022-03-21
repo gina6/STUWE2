@@ -12,6 +12,9 @@ const window = reactive(useWindowSize());
 const player = reactive(
   { id: 1, x: window.width / 2, y: window.height / 2, color: `#00c2d7` } //'#070925'
 );
+const player = reactive(
+  {id: 1, x: 0, y: 0, color: `#00c2d7`} //'#070925'
+)
 
 watchEffect(() => {
   playerMove(gyroData.accelerationIncludingGravity);
