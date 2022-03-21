@@ -21,7 +21,6 @@ function playerMove(accelerationIncludingGravity) {
   socket.emit('playerMove', accelerationIncludingGravity)
   player.x -= accelerationIncludingGravity.x;
   player.y += accelerationIncludingGravity.y;
-  console.log(accelerationIncludingGravity);
 }
 
 definePageMeta({
