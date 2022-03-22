@@ -12,8 +12,9 @@
 
 <style lang="scss" scoped>
 .button {
-  width: 364px;
-  height: 112px;
+  width: auto;
+  height: auto;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
