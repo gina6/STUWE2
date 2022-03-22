@@ -7,8 +7,6 @@ const socket = io();
 
 const gyroData = reactive(useDeviceMotion());
 
-const window = reactive(useWindowSize());
-
 const player = reactive(
   {id: 1, x: 0, y: 0, color: `#00c2d7`} //'#070925'
 )
@@ -20,8 +18,12 @@ watchEffect(() => {
 function playerMove(accelerationIncludingGravity) {
   console.log("Preview: " + accelerationIncludingGravity);
   socket.emit('playerMove', {accelerationIncludingGravity})
-  player.x = - accelerationIncludingGravity.x * 20;
-  player.y = accelerationIncludingGravity.y * 20;
+  if (accelerationIncludingGravity.x <= 25 && accelerationIncludingGravity.x >= -25) {
+    player.x -= accelerationIncludingGravity.x;
+  }
+  if (accelerationIncludingGravity.y <= 25 && accelerationIncludingGravity.y >= -25) {
+    player.y += accelerationIncludingGravity.y;
+  }
 }
 
 definePageMeta({

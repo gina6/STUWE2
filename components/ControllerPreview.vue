@@ -13,8 +13,6 @@
     watchEffect(() => { 
       stylePosition.top = window.height * 0.5 + indicator.y + 'px'
       stylePosition.left = window.width * 0.5 + indicator.x + 'px'
-      console.log(stylePosition.top);
-      console.log(stylePosition.left);
     })
     beforeMount.value = true;
   })

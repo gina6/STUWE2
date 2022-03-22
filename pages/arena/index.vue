@@ -2,10 +2,16 @@
   import { io } from "socket.io-client";
   let socket = io.connect('https://thefasterone.herokuapp.com/');
 
+  const window = reactive(useWindowSize());
+
   socket.on('playerMove', (accelerationData) => {
     console.log("Arena: " + accelerationData);
-    playerPosition[0].x -= accelerationData.x;
+    if (playerPosition[0].x >= 0 && playerPosition[0].x <= window.width) {
+      playerPosition[0].x -= accelerationData.x;
+    }
+    if (playerPosition[0].y >= 0 && playerPosition[0].y <= window.height) {
     playerPosition[0].y += accelerationData.y;
+    }
   })
 
   const pointPosition = reactive([
