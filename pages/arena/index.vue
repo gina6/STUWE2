@@ -4,8 +4,8 @@
 
   socket.on('move', (accelerationData) => {
     console.log(accelerationData);
-    playerPosition[0].x -= accelerationData.x;
-    playerPosition[0].y += accelerationData.y;
+    playerPosition[0].x -= accelerationData.accelerationX;
+    playerPosition[0].y += accelerationData.accelerationY;
   })
 
   const pointPosition = reactive([
