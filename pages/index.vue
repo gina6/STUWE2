@@ -1,21 +1,4 @@
 <script setup lang="ts">
-  import { io } from "socket.io-client";
-  import { onMounted } from 'vue';
-
-  onMounted(() => {
-    const socket = io();
-  
-    socket.on("connect", () => {
-      console.log('connected');
-      console.log(socket.connected);
-    });
-  
-    socket.on("disconnect", () => {
-      console.log('disconnected');
-      console.log(socket.connected);
-    });
-  })
-
   definePageMeta({
     layout: "custom",
   });

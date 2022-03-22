@@ -2,7 +2,6 @@
   const players = defineProps(['players'])
 
   const playerCnt = players.players.length
-  console.log(playerCnt);
 </script>
 
 <template>

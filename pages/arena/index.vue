@@ -3,7 +3,6 @@
   let socket = io.connect('https://thefasterone.herokuapp.com/');
 
   socket.on('move', (accelerationData) => {
-    console.log(accelerationData);
     playerPosition[0].x -= accelerationData.accelerationX;
     playerPosition[0].y += accelerationData.accelerationY;
   })
