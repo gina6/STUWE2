@@ -15,6 +15,7 @@ const player = reactive(
 
 watchEffect(() => {
   socket.emit('playerMove', gyroData.accelerationIncludingGravity);
+  console.log(gyroData.accelerationIncludingGravity);
   playerPreview(gyroData.accelerationIncludingGravity);
 });
 
