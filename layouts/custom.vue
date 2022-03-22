@@ -1,9 +1,13 @@
 <script setup lang="ts">
   useMeta({
-    bodyAttrs: {
-      class: 'body',
+    htmlAttrs: {
       style: [
-        `background: #080A29 url(/thefasterone_background_texture.svg) no-repeat top; background-size: cover;`
+        `height: 100%;`,
+      ]
+    },
+    bodyAttrs: {
+      style: [
+        `background: #080A29 url(/thefasterone_background_texture.svg) no-repeat top; background-size: cover; min-height: 100%;`
       ]
     }
   })
