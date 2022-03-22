@@ -2,8 +2,7 @@
   import { io } from "socket.io-client";
   let socket = io.connect('https://thefasterone.herokuapp.com/');
 
-  socket.on('playerMove', (accelerationData) => {
-    console.log("Arena: " + accelerationData);
+  socket.on('move', (accelerationData) => {
     playerPosition[0].x -= accelerationData.x;
     playerPosition[0].y += accelerationData.y;
   })

@@ -13,8 +13,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
       console.log('Made socket connection');
 
       socket.on('playerMove', (accelerationData) => {
-        console.log('Server: ' + accelerationData)
-        io.emit('playerMove', (accelerationData));
+        io.emit('move', (accelerationData));
       })
 
       socket.on('disconnect', () => console.log('disconnected'))
