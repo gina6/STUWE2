@@ -7,7 +7,7 @@
     },
     bodyAttrs: {
       style: [
-        `background: #080A29 url(/thefasterone_background_texture.svg) no-repeat top; background-size: cover; min-height: 100%;`
+        `background: #080A29 url(/thefasterone_background_texture.svg) no-repeat top; background-size: cover; min-height: 100%; overflow: hidden;`
       ]
     }
   })

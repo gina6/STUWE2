@@ -2,24 +2,10 @@
   import { io } from "socket.io-client";
   let socket = io.connect('https://thefasterone.herokuapp.com/');
 
-  socket.on('moveUp', (step) => {
-    playerPosition[0].y -= step;
-  });
-
-  socket.on('moveDown', (step) => {
-    playerPosition[0].y += step;
-  });
-
-  socket.on('moveLeft', (step) => {
-    playerPosition[0].x -= step;
-  });
-
-  socket.on('moveRight', (step) => {
-    playerPosition[0].x += step;
-  });
-
-  socket.on('addPlayer', (playerData) => {
-    playerPosition.push(playerData);
+  socket.on('playerMove', (accelerationData) => {
+    console.log("Arena: " + accelerationData);
+    playerPosition[0].x -= accelerationData.x;
+    playerPosition[0].y += accelerationData.y;
   })
 
   const pointPosition = reactive([

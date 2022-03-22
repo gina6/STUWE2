@@ -1,49 +1,32 @@
 <script setup>
 import { io } from "socket.io-client";
 import { useDeviceMotion } from "@vueuse/core";
+import { watchEffect } from "vue";
+
 const socket = io();
-const steps = 25;
+
+const gyroData = reactive(useDeviceMotion());
+
+const window = reactive(useWindowSize());
 
 const player = reactive(
   {id: 1, x: 0, y: 0, color: `#00c2d7`} //'#070925'
 )
 
-const {
-  acceleration,
-  accelerationIncludingGravity,
-  rotationRate,
-  interval,
-} = useDeviceMotion();
+watchEffect(() => {
+  playerMove(gyroData.accelerationIncludingGravity);
+});
 
+function playerMove(accelerationIncludingGravity) {
+  console.log("Preview: " + accelerationIncludingGravity);
+  socket.emit('playerMove', {accelerationIncludingGravity})
+  player.x = - accelerationIncludingGravity.x * 20;
+  player.y = accelerationIncludingGravity.y * 20;
+}
 
 definePageMeta({
   layout: "custom",
 });
-
-function up() {
-  socket.emit("up", steps);
-}
-
-function down() {
-  socket.emit("down", steps);
-}
-
-function left() {
-  socket.emit("left", steps);
-}
-
-function right() {
-  socket.emit("right", steps);
-}
-
-function newPlayer() {
-  socket.emit("newPlayer", {
-    id: Math.floor(Math.random() * 100),
-    x: Math.floor(Math.random() * 500),
-    y: Math.floor(Math.random() * 500),
-    score: 0,
-  });
-}
 </script>
 
 <template>
@@ -51,26 +34,6 @@ function newPlayer() {
     <h1>Ready</h1>
     <h2>Player {{ player.id }}</h2>
     <ControllerPreview :x="player.x" :y="player.y" :color="player.color" />
-    <button @click="newPlayer">New Player</button>
-    <button @click="left">Left</button>
-    <button @click="right">Right</button>
-    <button @click="up">Up</button>
-    <button @click="down">Down</button>
-
-    <h3>Acceleration Data: </h3>
-    <p>Acceleration X: {{ acceleration.x }}</p>
-    <p>Acceleration Y: {{ acceleration.y }}</p>
-    <p>Acceleration Z: {{ acceleration.z }}</p>
-    <br>
-    <p>Acceleration Gravity X: {{ accelerationIncludingGravity.x }}</p>
-    <p>Acceleration Gravity Y: {{ accelerationIncludingGravity.y }}</p>
-    <p>Acceleration Gravity Z: {{ accelerationIncludingGravity.z }}</p>
-    <br>
-    <p>Rotation Alpha: {{ rotationRate.alpha }}</p>
-    <p>Rotation Beta: {{ rotationRate.beta }}</p>
-    <p>Rotation Gamma: {{ rotationRate.gamma }}</p>
-    <br>
-    <p>Intervall: {{ interval }}</p>
   </div>
 </template>
 
