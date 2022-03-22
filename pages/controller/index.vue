@@ -19,8 +19,8 @@ watchEffect(() => {
 
 function playerMove(accelerationIncludingGravity) {
   socket.emit('playerMove', accelerationIncludingGravity)
-  player.x = accelerationIncludingGravity.x;
-  player.y = accelerationIncludingGravity.y;
+  player.x = accelerationIncludingGravity.x * 50;
+  player.y = accelerationIncludingGravity.y * 50;
 }
 
 definePageMeta({
