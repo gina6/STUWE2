@@ -14,6 +14,7 @@
     >
     <div>{{index}}</div>
     </Score>
+    <Timer />
   </div>
 </template>
 
