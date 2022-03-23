@@ -1,6 +1,12 @@
 <script setup>
 const timer = reactive({ timeInMs: 30000, interval: null });
 
+watchEffect(() => {
+  if(timer.timeInMs === 0) {
+    clearInterval(timer.interval);
+  }
+})
+
 onMounted(() => {
   setTimeout(() => {
     startTimer();
