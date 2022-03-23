@@ -1,5 +1,5 @@
 <script setup>
-const timerInMs = reactive({time: 30000, timer: null});
+const timer = reactive({ timeInMs: 30000, interval: null });
 
 onMounted(() => {
   setTimeout(() => {
@@ -7,14 +7,26 @@ onMounted(() => {
   }, 3000);
 });
 function startTimer() {
-  timerInMs.timer = setInterval(() => {
-    timerInMs.time -= 1000;
+  timer.interval = setInterval(() => {
+    timer.timeInMs -= 1000;
   }, 1000);
 }
 </script>
 
 <template>
-  <div>
-    {{ timerInMs.time }}
+  <div class="timer">
+    {{ timer.timeInMs / 1000 }}
   </div>
 </template>
+<style lang="scss" scoped>
+.timer {
+  font-family: "Termina";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+
+  color: #ffffff;
+
+  text-shadow: 0px 4px 4px rgba($rgb-black, 0.25);
+}
+</style>
