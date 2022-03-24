@@ -13,12 +13,10 @@ const player = reactive(
 
 watchEffect(() => {
   socket.emit('playerMove', {accelerationX: gyroData.accelerationIncludingGravity.x, accelerationY: gyroData.accelerationIncludingGravity.y});
-  playerPreview(gyroData.accelerationIncludingGravity);
+  playerMove(gyroData.accelerationIncludingGravity);
 });
 
 function playerMove(accelerationIncludingGravity) {
-  console.log("Preview: " + accelerationIncludingGravity);
-  socket.emit('playerMove', {accelerationIncludingGravity})
   if (accelerationIncludingGravity.x <= 25 && accelerationIncludingGravity.x >= -25) {
     player.x -= accelerationIncludingGravity.x;
   }

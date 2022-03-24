@@ -4,13 +4,12 @@
 
   const window = reactive(useWindowSize());
 
-  socket.on('playerMove', (accelerationData) => {
-    console.log("Arena: " + accelerationData);
+  socket.on('move', (accelerationData) => {
     if (playerPosition[0].x >= 0 && playerPosition[0].x <= window.width) {
-      playerPosition[0].x -= accelerationData.x;
+      playerPosition[0].x -= accelerationData.accelerationX;
     }
     if (playerPosition[0].y >= 0 && playerPosition[0].y <= window.height) {
-    playerPosition[0].y += accelerationData.y;
+    playerPosition[0].y += accelerationData.accelerationY;
     }
   })
 
