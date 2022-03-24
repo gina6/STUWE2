@@ -18,10 +18,10 @@ watchEffect(() => {
 
 function playerMove(accelerationIncludingGravity) {
   if (accelerationIncludingGravity.x <= 25 && accelerationIncludingGravity.x >= -25) {
-    player.x -= accelerationIncludingGravity.x;
+    player.x = accelerationIncludingGravity.x;
   }
   if (accelerationIncludingGravity.y <= 25 && accelerationIncludingGravity.y >= -25) {
-    player.y += accelerationIncludingGravity.y;
+    player.y = accelerationIncludingGravity.y;
   }
 }
 
