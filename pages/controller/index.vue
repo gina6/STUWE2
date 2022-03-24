@@ -17,8 +17,8 @@ watchEffect(() => {
 });
 
 function playerMove(accelerationIncludingGravity) {
-    player.x = accelerationIncludingGravity.x * 20;
-    player.y = accelerationIncludingGravity.y * 20;
+    player.x = -accelerationIncludingGravity.x * 10;
+    player.y = accelerationIncludingGravity.y * 10;
 }
 
 definePageMeta({
