@@ -1,20 +1,33 @@
 <script setup>
   const players = defineProps(['players'])
-
-  const playerCnt = players.players.length
-  console.log(playerCnt);
 </script>
 
 <template>
   <div class="scoreboard">
-    <Score
-      v-for="(player, index) in players.players"
-      :key="player.id"
-      :score="player.score"
-      :color="player.color"
+    <div
+      class="singleplayer"
+      v-if="players.players.length == 1"
     >
-    <div>{{index}}</div>
-    </Score>
+      Timer here
+      <Score
+        :score="players.players[0].score"
+        :color="players.players[0].color"
+      >
+      </Score>
+    </div>
+    <div 
+      v-if="players.players.length > 1"
+      class="multiplayer"
+    >
+      <Score
+        v-for="(player, index) in players.players"
+        :key="player.id"
+        :score="player.score"
+        :color="player.color"
+      >
+        <div>{{index}}</div>
+      </Score>
+    </div>
   </div>
 </template>
 
@@ -30,6 +43,10 @@
   padding: 1.5rem 1.5rem 2.5rem;
   display: flex;
   flex-direction: row;
+  .multiplayer {
+    display: flex;
+    flex-direction: row;
+  }
 }
 </style>
 <style>

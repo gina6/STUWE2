@@ -2,6 +2,10 @@
   import { io } from "socket.io-client";
   import { onMounted } from 'vue';
 
+  const players = usePlayers()
+  const colors = useColors()
+  const playerCnt = computed(() => players.value.length)
+
   onMounted(() => {
     const socket = io();
   
@@ -29,10 +33,10 @@
       <Qrcode />
       <div class="content-right">
         <div class="players">
-          <PlayerPreview :number="1" :color="`#00C2D7`" :active="true" />
-          <PlayerPreview :number="2" :color="`#DB53B0`" :active="true" />
-          <PlayerPreview :number="3" :color="`#FF8426`" :active="false" />
-          <PlayerPreview :number="4" :color="`#4CC38A`" :active="false" />
+          <PlayerPreview :number="1" :color="colors[0]" :active="playerCnt > 0" />
+          <PlayerPreview :number="2" :color="colors[1]" :active="playerCnt > 1" />
+          <PlayerPreview :number="3" :color="colors[2]" :active="playerCnt > 2" />
+          <PlayerPreview :number="4" :color="colors[3]" :active="playerCnt > 3" />
         </div>
         <Button :route="'/arena'" :active="true">Play</Button>
       </div>
