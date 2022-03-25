@@ -1,4 +1,9 @@
 <script setup lang="ts">
+
+  const players = usePlayers()
+  const colors = useColors()
+  const playerCnt = computed(() => players.value.length)
+
   definePageMeta({
     layout: "custom",
   });
