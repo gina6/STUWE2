@@ -1,33 +1,26 @@
 <script setup>
-  const players = defineProps(['players'])
+const players = defineProps(["players"]);
 </script>
 
 <template>
   <div class="scoreboard">
-    <div
-      class="singleplayer"
-      v-if="players.players.length == 1"
-    >
-      Timer here
+    <div class="singleplayer" v-if="players.players.length == 1">
       <Score
         :score="players.players[0].score"
         :color="players.players[0].color"
       >
       </Score>
+      <Timer />
     </div>
-    <div 
-      v-if="players.players.length > 1"
-      class="multiplayer"
-    >
+    <div v-if="players.players.length > 1" class="multiplayer">
       <Score
         v-for="(player, index) in players.players"
         :key="player.id"
         :score="player.score"
         :color="player.color"
       >
-        <div>{{index}}</div>
+        <div>{{ index }}</div>
       </Score>
-      <Timer />
     </div>
   </div>
 </template>
@@ -51,7 +44,7 @@
 }
 </style>
 <style>
-.wrapper:last-child *.divider{
+.wrapper:last-child *.divider {
   display: none;
 }
 </style>

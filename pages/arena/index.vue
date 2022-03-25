@@ -4,15 +4,6 @@
 
   const window = reactive(useWindowSize());
 
-  socket.on('move', (accelerationData) => {
-    if (playerPosition[0].x >= 0 && playerPosition[0].x <= window.width) {
-      playerPosition[0].x -= accelerationData.accelerationX;
-    }
-    if (playerPosition[0].y >= 0 && playerPosition[0].y <= window.height) {
-    playerPosition[0].y += accelerationData.accelerationY;
-    }
-  })
-
   const pointPosition = reactive([
     {id: 1, x: 100, y: 200, color: `#00c2d7`}
   ]) 
@@ -37,13 +28,12 @@
     }
   }
 
-  socket.on('playerMove', (accelerationData) => {
-    console.log("Arena: " + accelerationData);
+  socket.on('move', (accelerationData) => {
     if (players.value[0].x >= 0 && players.value[0].x <= window.width) {
-      players.value[0].x -= accelerationData.x;
+      players.value[0].x -= accelerationData.accelerationX;
     }
     if (players.value[0].y >= 0 && players.value[0].y <= window.height) {
-    players.value[0].y += accelerationData.y;
+    players.value[0].y += accelerationData.accelerationY;
     }
   })
 
