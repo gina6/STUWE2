@@ -25,11 +25,11 @@ function collectTest(point, player) {
 }
 
 socket.on("move", (accelerationData) => {
-  if (!(players.value[0].x <= 0 && accelerationData.accelerationX < 0 || players.value[0].x <= window.width - 100 && accelerationData.accelerationX > 0)) {
+  if (!(players.value[0].x <= 0 && accelerationData.accelerationX < 0 || players.value[0].x >= window.width - 100 && accelerationData.accelerationX > 0)) {
 
     players.value[0].x -= accelerationData.accelerationX;
   }
-  if (!(players.value[0].y <= 0 && accelerationData.accelerationX < 0 || players.value[0].y <= window.height - 100 && accelerationData.accelerationX > 0)) {
+  if (!(players.value[0].y <= 0 && accelerationData.accelerationY < 0 || players.value[0].y >= window.height - 100 && accelerationData.accelerationY > 0)) {
     players.value[0].y += accelerationData.accelerationY;
   }
 });
