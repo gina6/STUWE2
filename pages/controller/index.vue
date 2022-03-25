@@ -8,8 +8,13 @@ const socket = io();
 const gyroData = reactive(useDeviceMotion());
 
 const player = reactive(
-  {id: 1, x: 0, y: 0, color: `#00c2d7`} //'#070925'
+  {id: 1, x: 0, y: 0}
 )
+const players = usePlayers()
+const colors = useColors()
+
+// Find player with controller socket.id after init in players array
+// const player = players.find(player.socketid == socketConnection.socket.sessionid);
 
 watchEffect(() => {
   socket.emit('playerMove', {accelerationX: gyroData.accelerationIncludingGravity.x, accelerationY: gyroData.accelerationIncludingGravity.y});
@@ -30,7 +35,7 @@ definePageMeta({
   <div>
     <h1>Ready</h1>
     <h2>Player {{ player.id }}</h2>
-    <ControllerPreview :x="player.x" :y="player.y" :color="player.color" />
+    <ControllerPreview :x="player.x" :y="player.y" :color="colors[player.id-1]" />
   </div>
 </template>
 
