@@ -1,6 +1,6 @@
 <script setup>
 import { io } from "socket.io-client";
-let socket = io.connect("https://thefasterone.herokuapp.com/");
+let socket = io.connect("http://10.155.98.145:3000/");
 
 const window = reactive(useWindowSize());
 

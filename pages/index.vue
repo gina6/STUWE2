@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<script setup>
 import { io } from "socket.io-client";
-let socket = io.connect("https://thefasterone.herokuapp.com/");
+let socket = io.connect("http://10.155.98.145:3000/");
 
 const players = usePlayers();
 const colors = useColors();
@@ -8,14 +8,17 @@ const playerCnt = computed(() => players.value.length);
 let playerID = 1;
 
 socket.on("playerRegister", (registrationData) => {
-  players.value.push({
-    playerID: playerID,
-    socketID: registrationData.socketID,
-    x: registrationData.x,
-    y: registrationData.y,
-    score: registrationData.score,
-  });
-  playerID++;
+  console.log(players.value);
+  if (playerID < 5) {
+    players.value.push({
+      playerID: playerID,
+      socketID: registrationData.socketID,
+      x: registrationData.x,
+      y: registrationData.y,
+      score: registrationData.score,
+    });
+    playerID++;
+  }
 });
 
 socket.on("playerQuit", (socketID) => {
@@ -44,22 +47,22 @@ definePageMeta({
           <PlayerPreview
             :number="1"
             :color="colors[0]"
-            :active="playerCnt > 1"
+            :active="playerCnt > 0"
           />
           <PlayerPreview
             :number="2"
             :color="colors[1]"
-            :active="playerCnt > 2"
+            :active="playerCnt > 1"
           />
           <PlayerPreview
             :number="3"
             :color="colors[2]"
-            :active="playerCnt > 3"
+            :active="playerCnt > 2"
           />
           <PlayerPreview
             :number="4"
             :color="colors[3]"
-            :active="playerCnt > 4"
+            :active="playerCnt > 3"
           />
         </div>
         <Button :route="'/arena'" :active="true">Play</Button>

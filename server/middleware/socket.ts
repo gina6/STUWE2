@@ -11,7 +11,10 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
     io.on('connection', (socket) => {
 
-      io.emit('playerRegister', ({ socketID: socket.id, x: 300, y: 300, score: 0 }))
+      socket.on('controllerConnected', () => {
+        io.emit('playerRegister', ({ socketID: socket.id, x: 300, y: 300, score: 0 }));
+        console.log('connection registered')
+      })
 
       socket.on('playerMove', (accelerationData) => {
         io.emit('move', accelerationData);
