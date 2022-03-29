@@ -59,11 +59,11 @@ definePageMeta({
     />
     <Player
       v-for="player in players"
-      :key="player.id"
+      :key="player.playerID"
       :x="player.x"
       :y="player.y"
       :score="player.score"
-      :color="colors[player.id - 1]"
+      :color="colors[player.playerID - 1]"
     ></Player>
   </div>
 </template>

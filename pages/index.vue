@@ -16,6 +16,7 @@ socket.on("playerRegister", (registrationData) => {
       x: registrationData.x,
       y: registrationData.y,
       score: registrationData.score,
+      color: colors.value[playerID - 1],
     });
     playerID++;
   }
