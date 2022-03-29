@@ -25,24 +25,24 @@ function collectTest(point, player) {
 }
 
 socket.on("move", (accelerationData) => {
-  if (
-    !(
-      (players.value[0].x <= 0 && accelerationData.accelerationX > 0) ||
-      (players.value[0].x >= window.width - 100 &&
-        accelerationData.accelerationX < 0)
-    )
-  ) {
-    players.value[0].x -= accelerationData.accelerationX;
-  }
-  if (
-    !(
-      (players.value[0].y <= 0 && accelerationData.accelerationY < 0) ||
-      (players.value[0].y >= window.height - 100 &&
-        accelerationData.accelerationY > 0)
-    )
-  ) {
-    players.value[0].y += accelerationData.accelerationY;
-  }
+  players.forEach((player) => {
+    if (
+      !(
+        (player.x <= 0 && accelerationData.accelerationX > 0) ||
+        (player.x >= window.width - 100 && accelerationData.accelerationX < 0)
+      )
+    ) {
+      player.x -= accelerationData.accelerationX;
+    }
+    if (
+      !(
+        (player.y <= 0 && accelerationData.accelerationY < 0) ||
+        (player.y >= window.height - 100 && accelerationData.accelerationY > 0)
+      )
+    ) {
+      player.y += accelerationData.accelerationY;
+    }
+  });
 });
 
 definePageMeta({
