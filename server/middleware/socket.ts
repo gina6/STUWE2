@@ -13,7 +13,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
       socket.on('controllerConnected', () => {
         io.emit('playerRegister', ({ socketID: socket.id, x: 300, y: 300, score: 0 }));
-        console.log('connection registered')
       })
 
       socket.on('playerMove', (accelerationData) => {

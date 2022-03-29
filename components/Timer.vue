@@ -1,11 +1,14 @@
 <script setup>
 const timer = reactive({ timeInMs: 30000, interval: null });
 
+const route = useRouter();
+
 watchEffect(() => {
-  if(timer.timeInMs === 0) {
+  if (timer.timeInMs === 0) {
     clearInterval(timer.interval);
+    route.push("/gameOver");
   }
-})
+});
 
 onMounted(() => {
   setTimeout(() => {

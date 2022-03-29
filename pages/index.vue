@@ -8,7 +8,6 @@ const playerCnt = computed(() => players.value.length);
 let playerID = 1;
 
 socket.on("playerRegister", (registrationData) => {
-  console.log(players.value);
   if (playerID < 5) {
     players.value.push({
       playerID: playerID,
@@ -20,6 +19,7 @@ socket.on("playerRegister", (registrationData) => {
     });
     playerID++;
   }
+  console.log(players.value);
 });
 
 socket.on("playerQuit", (socketID) => {

@@ -1,4 +1,7 @@
-<script setup lang="ts">
+<script setup>
+const players = usePlayers();
+const score = ref(players.value[0].score);
+
 definePageMeta({
   layout: "custom",
 });
@@ -9,7 +12,7 @@ definePageMeta({
     <div class="content">
       <h2>Score</h2>
       <div class="line"></div>
-      <div class="score">0</div>
+      <div class="score">{{ score }}</div>
       <Button :route="'/arena'" :active="true">Play again</Button>
       <NuxtLink to="/"> Back to Lobby </NuxtLink>
     </div>
