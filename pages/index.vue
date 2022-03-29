@@ -1,13 +1,37 @@
 <script setup lang="ts">
+import { io } from "socket.io-client";
+let socket = io.connect("https://thefasterone.herokuapp.com/");
 
-  const players = usePlayers()
-  const colors = useColors()
-  const playerCnt = computed(() => players.value.length)
+const players = usePlayers();
+const colors = useColors();
+const playerCnt = computed(() => players.value.length);
+let playerID = 1;
 
-  definePageMeta({
-    layout: "custom",
+socket.on("playerRegister", (registrationData) => {
+  players.value.push({
+    playerID: playerID,
+    socketID: registrationData.socketID,
+    x: registrationData.x,
+    y: registrationData.y,
+    score: registrationData.score,
   });
+  playerID++;
+});
 
+socket.on("playerQuit", (socketID) => {
+  players.value.splice(
+    players.value.findIndex((object) => {
+      return object.socketID == socketID;
+    }),
+    players.value.findIndex((object) => {
+      return object.socketID == socketID;
+    }) + 1
+  );
+});
+
+definePageMeta({
+  layout: "custom",
+});
 </script>
 
 <template>
@@ -17,10 +41,26 @@
       <Qrcode />
       <div class="content-right">
         <div class="players">
-          <PlayerPreview :number="1" :color="colors[0]" :active="playerCnt > 0" />
-          <PlayerPreview :number="2" :color="colors[1]" :active="playerCnt > 1" />
-          <PlayerPreview :number="3" :color="colors[2]" :active="playerCnt > 2" />
-          <PlayerPreview :number="4" :color="colors[3]" :active="playerCnt > 3" />
+          <PlayerPreview
+            :number="1"
+            :color="colors[0]"
+            :active="playerCnt > 1"
+          />
+          <PlayerPreview
+            :number="2"
+            :color="colors[1]"
+            :active="playerCnt > 2"
+          />
+          <PlayerPreview
+            :number="3"
+            :color="colors[2]"
+            :active="playerCnt > 3"
+          />
+          <PlayerPreview
+            :number="4"
+            :color="colors[3]"
+            :active="playerCnt > 4"
+          />
         </div>
         <Button :route="'/arena'" :active="true">Play</Button>
       </div>
@@ -28,8 +68,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-
-div { 
+div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,9 +99,10 @@ div {
       transform: translate(-50%, -50%);
       width: 1340px;
       z-index: -1;
-      content: '';
+      content: "";
       border: 40px solid rgba($rgb-white, 0.16);
-      box-shadow: 0px 0px 63.9186px $color-purple, inset 0px 0px 31.9593px $color-purple;
+      box-shadow: 0px 0px 63.9186px $color-purple,
+        inset 0px 0px 31.9593px $color-purple;
       filter: blur(25px);
     }
   }

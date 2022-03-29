@@ -11,8 +11,14 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
     io.on('connection', (socket) => {
 
+      io.emit('playerRegister', ({ socketID: socket.id, x: 300, y: 300, score: 0 }))
+
       socket.on('playerMove', (accelerationData) => {
         io.emit('move', accelerationData);
+      })
+
+      socket.on('disconnect', () => {
+        io.emit('playerQuit', (socket.id));
       })
     })
   }
