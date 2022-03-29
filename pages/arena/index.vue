@@ -1,6 +1,6 @@
 <script setup>
 import { io } from "socket.io-client";
-let socket = io.connect("https://thefasterone.herokuapp.com/");
+let socket = io.connect("http://10.155.98.145:3000/");
 
 const window = reactive(useWindowSize());
 
@@ -25,7 +25,7 @@ function collectTest(point, player) {
 }
 
 socket.on("move", (accelerationData) => {
-  players.forEach((player) => {
+  players.value.forEach((player) => {
     if (
       !(
         (player.x <= 0 && accelerationData.accelerationX > 0) ||

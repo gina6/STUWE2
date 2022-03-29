@@ -7,12 +7,9 @@ const socket = io();
 
 const gyroData = reactive(useDeviceMotion());
 
-const player = reactive({ id: 1, x: 0, y: 0 });
-const players = usePlayers();
+const player = reactive({ id: 0, x: 0, y: 0 });
 const colors = useColors();
 
-// Find player with controller socket.id after init in players array
-// const player = players.find(player.socketid == socketConnection.socket.sessionid);
 onBeforeMount(() => {
   socket.emit("controllerConnected");
 });
@@ -23,6 +20,10 @@ watchEffect(() => {
     accelerationY: gyroData.accelerationIncludingGravity.y,
   });
   playerMove(gyroData.accelerationIncludingGravity);
+});
+
+socket.on("setPlayerID", (playerID) => {
+  player.id = playerID;
 });
 
 function playerMove(accelerationIncludingGravity) {

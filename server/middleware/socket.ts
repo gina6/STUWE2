@@ -15,6 +15,10 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         io.emit('playerRegister', ({ socketID: socket.id, x: 300, y: 300, score: 0 }));
       })
 
+      socket.on('playerID', (playerID) => {
+        io.emit('setPlayerID', playerID);
+      })
+
       socket.on('playerMove', (accelerationData) => {
         io.emit('move', accelerationData);
       })
