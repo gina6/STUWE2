@@ -24,7 +24,9 @@ watchEffect(() => {
 });
 
 socket.on("setPlayerID", (playerID) => {
-  player.id = playerID;
+  if (player.id === 0) {
+    player.id = playerID;
+  }
 });
 
 function playerMove(accelerationIncludingGravity) {
