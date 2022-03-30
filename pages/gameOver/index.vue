@@ -2,6 +2,14 @@
 const players = usePlayers();
 const score = ref(players.value[0].score);
 
+function resetGame(players) {
+  players.forEach((player) => {
+    player.score = 0;
+    player.x = 100;
+    player.y = 200;
+  });
+}
+
 definePageMeta({
   layout: "custom",
 });
@@ -14,7 +22,7 @@ definePageMeta({
       <div class="line"></div>
       <div class="score">{{ score }}</div>
       <Button :route="'/arena'" :active="true">Play again</Button>
-      <NuxtLink to="/"> Back to Lobby </NuxtLink>
+      <NuxtLink to="/" :onClick="resetGame(players)"> Back to Lobby </NuxtLink>
     </div>
   </div>
 </template>
