@@ -24,23 +24,25 @@ function collectTest(point, player) {
   }
 }
 
-socket.on("move", (accelerationData) => {
+socket.on("move", (movementData) => {
   players.value.forEach((player) => {
-    if (
-      !(
-        (player.x <= 0 && accelerationData.accelerationX > 0) ||
-        (player.x >= window.width - 100 && accelerationData.accelerationX < 0)
-      )
-    ) {
-      player.x -= accelerationData.accelerationX;
-    }
-    if (
-      !(
-        (player.y <= 0 && accelerationData.accelerationY < 0) ||
-        (player.y >= window.height - 100 && accelerationData.accelerationY > 0)
-      )
-    ) {
-      player.y += accelerationData.accelerationY;
+    if (player.playerID === movementData.playerID) {
+      if (
+        !(
+          (player.x <= 0 && movementData.accelerationX > 0) ||
+          (player.x >= window.width - 100 && movementData.accelerationX < 0)
+        )
+      ) {
+        player.x -= movementData.accelerationX;
+      }
+      if (
+        !(
+          (player.y <= 0 && movementData.accelerationY < 0) ||
+          (player.y >= window.height - 100 && movementData.accelerationY > 0)
+        )
+      ) {
+        player.y += movementData.accelerationY;
+      }
     }
   });
 });

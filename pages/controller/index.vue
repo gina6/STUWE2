@@ -18,6 +18,7 @@ watchEffect(() => {
   socket.emit("playerMove", {
     accelerationX: gyroData.accelerationIncludingGravity.x,
     accelerationY: gyroData.accelerationIncludingGravity.y,
+    playerID: player.id,
   });
   playerMove(gyroData.accelerationIncludingGravity);
 });

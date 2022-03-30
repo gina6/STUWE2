@@ -19,8 +19,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         io.emit('setPlayerID', playerID);
       })
 
-      socket.on('playerMove', (accelerationData) => {
-        io.emit('move', accelerationData);
+      socket.on('playerMove', (movementData) => {
+        io.emit('move', movementData);
       })
 
       socket.on('disconnect', () => {
