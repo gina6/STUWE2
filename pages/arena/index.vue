@@ -17,7 +17,7 @@ function collectTest(point, player) {
   let dy = point.y + 50 - (player.y + 50);
   let distance = Math.sqrt(dx * dx + dy * dy);
   // distance < (pointradius + playerradius) => collect
-  if (distance < 100) {
+  if (distance < 50) {
     player.score += 1;
     point.x = Math.floor(Math.random() * window.width);
     point.y = Math.floor(Math.random() * window.height);
