@@ -1,6 +1,16 @@
 <script setup>
 const players = usePlayers();
-const score = ref(players.value[0].score);
+const playerCnt = computed(() => players.value.length);
+const winnerIndex = ref(findWinnderIndex());
+
+function findWinnderIndex() {
+  if (playerCnt == 1) {
+    return 0;
+  }
+  players.value.findIndex((object) => {
+    return object.score == 10;
+  });
+}
 
 function resetGame(players) {
   players.forEach((player) => {
@@ -16,14 +26,27 @@ definePageMeta({
 </script>
 <template>
   <div class="wrapper">
-    <h1>Time's up!</h1>
-    <div class="content">
-      <h2>Score</h2>
-      <div class="line"></div>
-      <div class="score">{{ score }}</div>
-      <Button :route="'/arena'" :active="true">Play again</Button>
-      <NuxtLink to="/" :onClick="resetGame(players)"> Back to Lobby </NuxtLink>
+    <div v-if="playerCnt == 1" class="singleplayer">
+      <h1>Time's up!</h1>
+      <div class="content">
+        <h2>Score</h2>
+        <div class="line"></div>
+        <div class="score">{{ players.value[winnerIndex].score }}</div>
+      </div>
     </div>
+    <div v-if="playerCnt > 1" class="multiplayer">
+      <h1>Player {{ players.value[winnerIndex].playerID }} wins!</h1>
+      <div class="content">
+        <Score
+          v-for="player in players"
+          :key="player.playerID"
+          :score="player.score"
+          :color="player.color"
+        />
+      </div>
+    </div>
+    <Button :route="'/arena'" :active="true">Play again</Button>
+    <NuxtLink to="/" :onClick="resetGame(players)"> Back to Lobby </NuxtLink>
   </div>
 </template>
 <style lang="scss" scoped>
