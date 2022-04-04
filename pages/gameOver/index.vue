@@ -33,7 +33,7 @@ definePageMeta({
       <div class="content">
         <h2>Score</h2>
         <div class="line"></div>
-        <div class="score">{{ players[0].score }}</div>
+        <Score :score="players[0].score" :color="players[0].color" />
       </div>
     </div>
     <div v-else class="multiplayer">
