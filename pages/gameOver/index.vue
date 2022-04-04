@@ -1,15 +1,17 @@
 <script setup>
 const players = usePlayers();
-const playerCnt = computed(() => players.value.length);
-const winnerIndex = ref(findWinnderIndex());
+//const playerCnt = computed(() => players.value.length);
+const singleplayer = computed(() => players.value.length == 1);
+const winnerIndex = computed(() => findWinnerIndex());
 
-function findWinnderIndex() {
-  if (playerCnt == 1) {
+function findWinnerIndex() {
+  if (singleplayer) {
     return 0;
+  } else {
+    players.value.findIndex((object) => {
+      return object.score == 10;
+    });
   }
-  players.value.findIndex((object) => {
-    return object.score == 10;
-  });
 }
 
 function resetGame(players) {
@@ -26,23 +28,27 @@ definePageMeta({
 </script>
 <template>
   <div class="wrapper">
-    <div v-if="playerCnt == 1" class="singleplayer">
+    <div v-show="singleplayer" class="singleplayer">
       <h1>Time's up!</h1>
       <div class="content">
         <h2>Score</h2>
         <div class="line"></div>
-        <div class="score">{{ players.value[winnerIndex].score }}</div>
+        <div class="score">{{ players[winnerIndex].score }}</div>
       </div>
     </div>
-    <div v-if="playerCnt > 1" class="multiplayer">
-      <h1>Player {{ players.value[winnerIndex].playerID }} wins!</h1>
-      <div class="content">
-        <Score
+    <div v-show="!singleplayer" class="multiplayer">
+      <h1>Player {{ players[winnerIndex].playerID }} wins!</h1>
+      <div class="scores">
+        <div
           v-for="player in players"
           :key="player.playerID"
           :score="player.score"
-          :color="player.color"
-        />
+          class="content"
+        >
+          <h2>Player {{ player.playerID }}</h2>
+          <div class="line"></div>
+          <Score :score="player.score" :color="player.color" />
+        </div>
       </div>
     </div>
     <Button :route="'/arena'" :active="true">Play again</Button>
@@ -58,7 +64,7 @@ div {
   height: auto;
   width: auto;
   .wrapper {
-    width: 1440px;
+    // width: 1440px;
     margin: 5rem auto 0 auto;
   }
 
@@ -93,7 +99,7 @@ div {
     font-family: "Termina";
     font-style: normal;
     font-weight: 500;
-    font-size: 64px;
+    font-size: 36px;
     line-height: 77px;
 
     color: #ffffff;
@@ -101,13 +107,18 @@ div {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
+  .multiplayer {
+    .scores {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
   .content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-top: 5rem;
-    width: 100%;
-    height: 600px;
+    margin: 3rem;
+    height: 400px;
   }
 
   .line {
@@ -120,7 +131,7 @@ div {
     font-family: "Termina";
     font-style: normal;
     font-weight: 800;
-    font-size: 144px;
+    font-size: 36px;
 
     color: #ffffff;
 
@@ -131,14 +142,14 @@ div {
     font-family: "Termina";
     font-style: normal;
     font-weight: 500;
-    font-size: 36px;
+    font-size: 32px;
     line-height: 43px;
 
     color: #ffffff;
 
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    padding-top: 5rem;
+    padding-top: 3rem;
   }
 }
 </style>
