@@ -1,24 +1,24 @@
 <script setup>
 const players = usePlayers();
-//const playerCnt = computed(() => players.value.length);
+const colors = useColors();
+const colorProp = defineProps(["color"]);
 const singleplayer = computed(() => players.value.length == 1);
-const winnerIndex = computed(() => findWinnerIndex());
+const winnerIndex = computed(() =>
+  players.value.findIndex((player) => {
+    return player.score == 10;
+  })
+);
 
-function findWinnerIndex() {
-  if (singleplayer) {
-    return 0;
-  } else {
-    players.value.findIndex((object) => {
-      return object.score == 10;
-    });
-  }
-}
+watchEffect(() => {
+  console.log("watcher");
+  colorProp.color = colors[winnerIndex];
+});
 
 function resetGame(players) {
   players.forEach((player) => {
     player.score = 0;
-    player.x = 100;
-    player.y = 200;
+    player.x = 300;
+    player.y = 300;
   });
 }
 
@@ -28,23 +28,20 @@ definePageMeta({
 </script>
 <template>
   <div class="wrapper">
-    <div v-show="singleplayer" class="singleplayer">
+    <div v-if="singleplayer == true" class="singleplayer">
       <h1>Time's up!</h1>
       <div class="content">
         <h2>Score</h2>
         <div class="line"></div>
-        <div class="score">{{ players[winnerIndex].score }}</div>
+        <div class="score">{{ players[0].score }}</div>
       </div>
     </div>
-    <div v-show="!singleplayer" class="multiplayer">
-      <h1>Player {{ players[winnerIndex].playerID }} wins!</h1>
+    <div v-else class="multiplayer">
+      <h1 :color="colors[winnerIndex]">
+        Player {{ players[winnerIndex].playerID }} wins!
+      </h1>
       <div class="scores">
-        <div
-          v-for="player in players"
-          :key="player.playerID"
-          :score="player.score"
-          class="content"
-        >
+        <div v-for="player in players" :key="player.playerID" class="content">
           <h2>Player {{ player.playerID }}</h2>
           <div class="line"></div>
           <Score :score="player.score" :color="player.color" />
@@ -52,7 +49,7 @@ definePageMeta({
       </div>
     </div>
     <Button :route="'/arena'" :active="true">Play again</Button>
-    <NuxtLink to="/" :onClick="resetGame(players)"> Back to Lobby </NuxtLink>
+    <NuxtLink to="/" @click="resetGame(players)"> Back to Lobby </NuxtLink>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -79,7 +76,7 @@ div {
     text-shadow: 0px 4px 4px rgba($color-black, 0.5);
 
     &::after {
-      background-color: $color-purple;
+      background-color: v-bind("colorProp.color");
       position: absolute;
       top: 70%;
       left: 50%;
@@ -89,8 +86,8 @@ div {
       z-index: -1;
       content: "";
       border: 40px solid rgba($rgb-white, 0.16);
-      box-shadow: 0px 0px 63.9186px $color-purple,
-        inset 0px 0px 31.9593px $color-purple;
+      box-shadow: 0px 0px 63.9186px v-bind("colorProp.color"),
+        inset 0px 0px 31.9593px v-bind("colorProp.color");
       filter: blur(25px);
     }
   }
