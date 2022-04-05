@@ -1,82 +1,87 @@
-<script>
+<script setup>
 import { io } from "socket.io-client";
 import { useDeviceMotion } from "@vueuse/core";
-import { watchEffect } from 'vue';
+import { watchEffect } from "vue";
 
 const socket = io();
-const steps = 25;
 
-export default {
-  setup() {
-    const {
-      acceleration,
-      accelerationIncludingGravity,
-      rotationRate,
-      interval,
-    } = useDeviceMotion();
-    watchEffect(() => playerMove(acceleration));
-    return {
-      acceleration,
-      accelerationIncludingGravity,
-      rotationRate,
-      interval,
-    };
-  },
-  methods: {
-    playerMove(acceleration) {
-      socket.emit('playerMove', acceleration)
-    },
+const gyroData = reactive(useDeviceMotion());
 
-    up() {
-      socket.emit("up", acceleration.y);
-    },
-    down() {
-      socket.emit("down", acceleration.y);
-    },
-    left() {
-      socket.emit("left", acceleration.x);
-    },
-    right() {
-      socket.emit("right", acceleration.x);
-    },
-    newPlayer() {
-      socket.emit("newPlayer", {
-        id: Math.floor(Math.random() * 100),
-        x: Math.floor(Math.random() * 500),
-        y: Math.floor(Math.random() * 500),
-        score: 0,
-      });
-    },
-  },
-};
+const player = reactive({ id: 0, x: 0, y: 0 });
+const colors = useColors();
+
+onBeforeMount(() => {
+  socket.emit("controllerConnected");
+});
+
+watchEffect(() => {
+  socket.emit("playerMove", {
+    accelerationX: gyroData.accelerationIncludingGravity.x,
+    accelerationY: gyroData.accelerationIncludingGravity.y,
+    playerID: player.id,
+  });
+  playerMove(gyroData.accelerationIncludingGravity);
+});
+
+socket.on("setPlayerID", (playerID) => {
+  if (player.id === 0) {
+    player.id = playerID;
+  }
+});
+
+function playerMove(accelerationIncludingGravity) {
+  player.x = -accelerationIncludingGravity.x * 10;
+  player.y = accelerationIncludingGravity.y * 10;
+}
+
+definePageMeta({
+  layout: "custom",
+});
 </script>
 
 <template>
   <div>
-    <h1>Player 1</h1>
-    <h1>Controller</h1>
-    <button @click="newPlayer">New Player</button>
-    <button @click="left">Left</button>
-    <button @click="right">Right</button>
-    <button @click="up">Up</button>
-    <button @click="down">Down</button>
-
-    <h2>Acceleration Data: </h2>
-    <p>Acceleration X: {{ acceleration.x }}</p>
-    <p>Acceleration Y: {{ acceleration.y }}</p>
-    <p>Acceleration Z: {{ acceleration.z }}</p>
-    <br>
-    <p>Acceleration Gravity X: {{ accelerationIncludingGravity.x }}</p>
-    <p>Acceleration Gravity Y: {{ accelerationIncludingGravity.y }}</p>
-    <p>Acceleration Gravity Z: {{ accelerationIncludingGravity.z }}</p>
-    <br>
-    <p>Rotation Alpha: {{ rotationRate.alpha }}</p>
-    <p>Rotation Beta: {{ rotationRate.beta }}</p>
-    <p>Rotation Gamma: {{ rotationRate.gamma }}</p>
+    <h1>Ready</h1>
+    <h2>Player {{ player.id }}</h2>
+    <ControllerPreview
+      :x="player.x"
+      :y="player.y"
+      :color="colors[player.id - 1]"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
+h1 {
+  @include ethnocentric;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 49px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: $color-white;
+  position: absolute;
+  top: calc(50% - 2rem);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+h2 {
+  @include termina;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 43px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: $color-white;
+  position: absolute;
+  top: calc(50% + 2rem);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+h3 {
+  color: $color-white;
+}
+p {
+  color: $color-white;
+}
 button {
   height: auto;
   width: auto;

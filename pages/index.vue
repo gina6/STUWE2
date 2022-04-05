@@ -1,28 +1,41 @@
-<script setup lang="ts">
+<script setup>
 import { io } from "socket.io-client";
-import { onMounted } from 'vue';
+let socket = io.connect("https://thefasterone.herokuapp.com/");
 
-  onMounted(() => {
-    const socket = io();
-  
-    socket.on("connect", () => {
-      console.log('connected');
-      console.log(socket.connected);
+const players = usePlayers();
+const colors = useColors();
+const playerCnt = computed(() => players.value.length);
+let playerID = 1;
+
+socket.on("playerRegister", (registrationData) => {
+  if (playerID < 5) {
+    players.value.push({
+      playerID: playerID,
+      socketID: registrationData.socketID,
+      x: registrationData.x,
+      y: registrationData.y,
+      score: registrationData.score,
+      color: colors.value[playerID - 1],
     });
-  
-    socket.on("disconnect", () => {
-      console.log('disconnected');
-      console.log(socket.connected);
-    });
+    socket.emit("playerID", playerID);
+    playerID++;
+  }
+});
 
-    useMeta({
-      bodyAttrs: {
-        class: 'body',
-        style: `background: #080A29 url(../public/thefasterone_background_texture.svg) no-repeat center`
-      }
-    })
-  })
+socket.on("playerQuit", (socketID) => {
+  players.value.splice(
+    players.value.findIndex((object) => {
+      return object.socketID == socketID;
+    }),
+    players.value.findIndex((object) => {
+      return object.socketID == socketID;
+    }) + 1
+  );
+});
 
+definePageMeta({
+  layout: "custom",
+});
 </script>
 
 <template>
@@ -32,10 +45,26 @@ import { onMounted } from 'vue';
       <Qrcode />
       <div class="content-right">
         <div class="players">
-          <PlayerPreview :number="1" :color="`#00C2D7`" :active="true" />
-          <PlayerPreview :number="2" :color="`#DB53B0`" :active="true" />
-          <PlayerPreview :number="3" :color="`#FF8426`" :active="false" />
-          <PlayerPreview :number="4" :color="`#4CC38A`" :active="false" />
+          <PlayerPreview
+            :number="1"
+            :color="colors[0]"
+            :active="playerCnt > 0"
+          />
+          <PlayerPreview
+            :number="2"
+            :color="colors[1]"
+            :active="playerCnt > 1"
+          />
+          <PlayerPreview
+            :number="3"
+            :color="colors[2]"
+            :active="playerCnt > 2"
+          />
+          <PlayerPreview
+            :number="4"
+            :color="colors[3]"
+            :active="playerCnt > 3"
+          />
         </div>
         <Button :route="'/arena'" :active="true">Play</Button>
       </div>
@@ -43,8 +72,7 @@ import { onMounted } from 'vue';
   </div>
 </template>
 <style lang="scss" scoped>
-
-div { 
+div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,9 +103,10 @@ div {
       transform: translate(-50%, -50%);
       width: 1340px;
       z-index: -1;
-      content: '';
+      content: "";
       border: 40px solid rgba($rgb-white, 0.16);
-      box-shadow: 0px 0px 63.9186px $color-purple, inset 0px 0px 31.9593px $color-purple;
+      box-shadow: 0px 0px 63.9186px $color-purple,
+        inset 0px 0px 31.9593px $color-purple;
       filter: blur(25px);
     }
   }
