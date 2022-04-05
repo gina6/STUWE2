@@ -10,7 +10,6 @@ const winnerIndex = computed(() =>
 );
 
 watchEffect(() => {
-  console.log("watcher");
   colorProp.color = colors[winnerIndex];
 });
 
@@ -31,9 +30,9 @@ definePageMeta({
     <div v-if="singleplayer == true" class="singleplayer">
       <h1>Time's up!</h1>
       <div class="content">
-        <h2>Score</h2>
+        <h2>Your Score</h2>
         <div class="line"></div>
-        <div class="score">{{ players[0].score }}</div>
+        <Score :score="players[0].score" :color="players[0].color" />
       </div>
     </div>
     <div v-else class="multiplayer">
@@ -98,6 +97,7 @@ div {
     font-weight: 500;
     font-size: 36px;
     line-height: 77px;
+    text-transform: uppercase;
 
     color: #ffffff;
 

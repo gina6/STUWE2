@@ -13,10 +13,7 @@ const players = defineProps(["players"]);
       <Timer />
     </div>
     <div v-if="players.players.length > 1" class="multiplayer">
-      <ScoreWatcher
-        :players="players.players"
-      >  
-      </ScoreWatcher>
+      <ScoreWatcher :players="players.players"> </ScoreWatcher>
       <Score
         v-for="(player, index) in players.players"
         :key="player.id"
@@ -44,6 +41,12 @@ const players = defineProps(["players"]);
   .multiplayer {
     display: flex;
     flex-direction: row;
+  }
+  .singleplayer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
