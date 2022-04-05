@@ -1,17 +1,12 @@
 <script setup>
 const players = usePlayers();
 const colors = useColors();
-const colorProp = defineProps(["color"]);
 const singleplayer = computed(() => players.value.length == 1);
 const winnerIndex = computed(() =>
   players.value.findIndex((player) => {
-    return player.score == 10;
+    return player.score >= 10;
   })
 );
-
-watchEffect(() => {
-  colorProp.color = colors[winnerIndex];
-});
 
 function resetGame(players) {
   players.forEach((player) => {
@@ -77,7 +72,7 @@ div {
     text-shadow: 0px 4px 4px rgba($color-black, 0.5);
 
     &::after {
-      background-color: v-bind("colorProp.color");
+      background-color: v-bind("colors[winnerIndex]");
       position: absolute;
       top: 70%;
       left: 50%;
@@ -87,8 +82,8 @@ div {
       z-index: -1;
       content: "";
       border: 40px solid rgba($rgb-white, 0.16);
-      box-shadow: 0px 0px 63.9186px v-bind("colorProp.color"),
-        inset 0px 0px 31.9593px v-bind("colorProp.color");
+      box-shadow: 0px 0px 63.9186px v-bind("colors[winnerIndex]"),
+        inset 0px 0px 31.9593px v-bind("colors[winnerIndex]");
       filter: blur(25px);
     }
   }
