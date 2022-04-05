@@ -21,10 +21,19 @@ The core concept and design was created in Figma by two UX / UI Designers in the
 
 ## Technologies and Frameworks
 
-### Architecture
 We used [Vue.js](https://vuejs.org/) with [Nuxt3.js](https://v3.nuxtjs.org/) as Frameworks. For the socket connection we used the [socket.io](https://socket.io/) library. To read the gyroscope data we used the [VueUse](https://vueuse.org/) library.
 
 The deployment runs via [Heroku](https://www.heroku.com/).
+
+### Architecture Diagram
+
+![Architecture](https://user-images.githubusercontent.com/58468359/161763011-f526f0a3-272b-4974-8d64-a3855903aecd.png)
+
+### Sequence Diagram
+
+![Sequenzdiagramm](https://user-images.githubusercontent.com/58468359/161768419-162477fb-279c-4f14-b815-5bc7d2602b7f.png)
+
+
 
 ## Gameplay Images
 *Start*
@@ -46,6 +55,7 @@ The deployment runs via [Heroku](https://www.heroku.com/).
 *Phone View*
 
 <img src="https://user-images.githubusercontent.com/58468359/161758329-7d7af01d-b62a-43d7-ab4d-d24050bf6fff.jpg" height="500px" />
+
 
 
 ## Run locally
