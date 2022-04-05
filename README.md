@@ -5,6 +5,11 @@ We created an online single- and multiplayer game where you control your player 
 
 The project was created in a course of six weeks during the module *Studio Web and Mobile Design and Engineering 2*.
 
+## How to play
+Open this on a Desktop (preferably Chrome): https://thefasterone.herokuapp.com/
+
+Scan the QR-Code with up to four Android mobile devices (no than four though).
+
 ## Design
 The core concept and design was created in Figma by two UX and UI Designers in their module *Studio UX Design 2*.
 
