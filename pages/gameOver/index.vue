@@ -47,8 +47,10 @@ definePageMeta({
         </div>
       </div>
     </div>
-    <Button :route="'/arena'" :active="true">Play again</Button>
-    <NuxtLink to="/" @click="resetGame(players)"> Back to Lobby </NuxtLink>
+    <Button :route="'/'" @click="resetGame(players)" :active="true"
+      >Back to Lobby</Button
+    >
+    <!-- <NuxtLink to="/" > Back to Lobby </NuxtLink> -->
   </div>
 </template>
 <style lang="scss" scoped>
