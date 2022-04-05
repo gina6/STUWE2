@@ -17,7 +17,7 @@ function collectTest(point, player) {
   let dy = point.y + 50 - (player.y + 50);
   let distance = Math.sqrt(dx * dx + dy * dy);
   // distance < (pointradius + playerradius) => collect
-  if (distance < 100) {
+  if (distance < 70) {
     player.score += 1;
     point.x = 50 + Math.floor(Math.random() * (window.width-50));
     point.y = 50 + Math.floor(Math.random() * (window.width-50));
@@ -30,7 +30,7 @@ socket.on("move", (movementData) => {
       if (
         !(
           (player.x <= 0 && movementData.accelerationX > 0) ||
-          (player.x >= window.width - 50 && movementData.accelerationX < 50)
+          (player.x >= window.width - 100 && movementData.accelerationX < 0)
         )
       ) {
         player.x -= movementData.accelerationX;
@@ -38,7 +38,7 @@ socket.on("move", (movementData) => {
       if (
         !(
           (player.y <= 0 && movementData.accelerationY < 0) ||
-          (player.y >= window.height - 50 && movementData.accelerationY > 50)
+          (player.y >= window.height - 100 && movementData.accelerationY > 0)
         )
       ) {
         player.y += movementData.accelerationY;

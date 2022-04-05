@@ -25,6 +25,5 @@
   justify-content: center;
   color: $color-black;
   transition: ease-in-out 0.1s;
-  transform: translate(-50px, -50px);
 }
 </style>
