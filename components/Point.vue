@@ -21,5 +21,6 @@
   border-radius: 50px;
   background: radial-gradient(50% 50% at 50% 50%, rgba(255, 34, 129, 0) 78.65%, v-bind('point.color') 100%);
   filter: drop-shadow(0px 0px 8.33333px v-bind('point.color'));
+  transform: translate(-50px, -50px);
 }
 </style>
