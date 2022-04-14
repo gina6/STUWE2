@@ -19,7 +19,7 @@ The core concept and design was created in Figma by two UX / UI Designers in the
 
 * [Figma Prototype Multiplayer Mobile](https://www.figma.com/proto/SvU34EUYjpnpFq1tZPvfUH/STUWEUX2?node-id=483%3A736&scaling=min-zoom&page-id=411%3A643&starting-point-node-id=483%3A736&show-proto-sidebar=1)
 
-* [UX Research Documentation](./gina6/STUWE2/blob/main/researchDocs.md)
+* [UX Research Documentation](https://github.com/gina6/STUWE2/blob/main/researchDocs.md)
 
 ## Technologies and Frameworks
 
