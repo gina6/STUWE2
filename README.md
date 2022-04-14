@@ -10,7 +10,7 @@ Open this on a Desktop (preferably Chrome): https://thefasterone.herokuapp.com/
 
 Scan the QR-Code with up to four Android mobile devices (no than four though).
 
-## Design
+## Design/UX
 The core concept and design was created in Figma by two UX / UI Designers in their module *Studio UX Design 2*.
 
 * [Figma Prototype Singleplayer](https://www.figma.com/proto/SvU34EUYjpnpFq1tZPvfUH/STUWEUX2?node-id=261%3A1323&scaling=scale-down&page-id=0%3A1&starting-point-node-id=261%3A1323&show-proto-sidebar=1)
@@ -18,6 +18,8 @@ The core concept and design was created in Figma by two UX / UI Designers in the
 * [Figma Prototype Multiplayer](https://www.figma.com/proto/SvU34EUYjpnpFq1tZPvfUH/STUWEUX2?node-id=262%3A1043&scaling=scale-down&page-id=0%3A1&starting-point-node-id=262%3A1043&show-proto-sidebar=1)
 
 * [Figma Prototype Multiplayer Mobile](https://www.figma.com/proto/SvU34EUYjpnpFq1tZPvfUH/STUWEUX2?node-id=483%3A736&scaling=min-zoom&page-id=411%3A643&starting-point-node-id=483%3A736&show-proto-sidebar=1)
+
+* [UX Research Documentation](/reseachDocs.md)
 
 ## Technologies and Frameworks
 
