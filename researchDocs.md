@@ -1,6 +1,6 @@
 # UX Research Documentation for "The Faster One"
 
-##Introduction
+## Introduction
 For a course of the Lucerne University of Applied Sciences and Arts, the "The Faster One" UX team has been working on testing "The Faster One"’s user experience.
 <br><br>
 In short our focus was on:
@@ -17,9 +17,9 @@ The setup to play would be: Use any device (e.g. Smart TV, Laptop, … it just n
 
 ![](/kuglespil.png)
 
-##Research Questions
+## Research Questions
 
-###For an overview, all the research questions and summarized results from the latest tested variant:
+### For an overview, all the research questions and summarized results from the latest tested variant:
 
 | Topic | Question | Priority | Current Research Findings | Further Steps |
 |-------|----------|----------|---------------------------|---------------|
