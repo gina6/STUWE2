@@ -1,4 +1,4 @@
-#UX Research Plan for “The Faster One”
+# UX Research Plan for “The Faster One”
 
 
 **Author:**<br>
@@ -13,7 +13,7 @@ Gina & Niklas – Dev Team <br>
 Giuliana – Design<br>
 Users
 
-###Background:
+### Background:
 "The Faster One" is inspired by the classic wooden maze puzzle game, as seen in the picture below.
 The goal of the game is to navigate the ball in to the right hole to score a point.
 To control the ball, just tilt your connected smartphone which is using the device's gyroscope.
@@ -22,7 +22,7 @@ The setup to play would be: Use any device (e.g. Smart TV, Laptop, … it just n
 <br><br>
 ![](../../../../Mobile Documents/com~apple~CloudDocs/HSLU/UX Research/kuglespil.png)
 
-##Research Questions
+## Research Questions
 | Topic | Question | Priority | 
 |-------|----------|----------|
 | Accessibility | Is it usable for people with restricted mobility (hand/arm) | low |
@@ -60,14 +60,14 @@ Camera(s) to film the users behaviors
 1-2 Smartphones with working gyro sensors – best case one iPhone and one Android – maybe using the device of the participant if the coded prototype is working till then
 TV/Beamer (with browser capabilities or hooked to a PC) or Laptop
 
-###Methodology
+### Methodology
 - 5 seconds testing (optional)
 - Usability Testing – observing the participants
 - User interviews – semi structured
 
 Ca. 20min per participant – will be more precise after further testing
 
-##Scenarios 
+## Scenarios 
 ###Scenarios for Figma Prototype
 (for an easier use in german)
 
@@ -82,7 +82,7 @@ Wer hat gewonnen? P1 oder P2<br>
 Starte ein Spiel neu (P2)<br>
 Beende ein Spiel (P2)<br>
 
-###Script for Figma Prototyp
+### Script for Figma Prototyp
 (for an easier use in german)
 
 **Briefing:**
@@ -124,7 +124,7 @@ Was hast du erwartet? Wie kennst du es von anderen ähnlichen Spielen?<br>
 Was hat Spass gemacht, was war langweilig?<br>
 Danken und verabschieden<br>
 
-###Scenarios for Code Prototype (current state)
+### Scenarios for Code Prototype (current state)
 (for an easier use in german)
 Hier bist du jetzt auch wieder von anfang an auf der Website. Es ist alles noch in der Prototyp Phase, deswegen sind noch nicht alle Funktionen unterstützt. Falls du auf so eine fehlende Funktion triffst, werde ich dir das sagen, Audio fehlt noch. Denke bitte beim ganzen Durchgang laut
 
@@ -132,7 +132,7 @@ Verbinde dein Smartphone mit dem Spiel<br>
 Beginne ein Spiel als Player 1<br>
 Spiele ein wenig<br>
 
-###Scenarios for Code Prototype (finished)
+### Scenarios for Code Prototype (finished)
 (for an easier use in german)
 
 Verbinde dein Smartphone mit dem Spiel<br>
@@ -186,10 +186,10 @@ Was hat Spass gemacht, was war langweilig?
 Danken und verabschieden
 
 
-##Participants
+## Participants
 Test participants should have some technical knowledge with a smartphone (iOS or Android). Should have played games before – mobile games is fine. German or English speaking. Age or gender irrelevant but at best balanced.
 
-##Schedule
+## Schedule
 ~~16.03		Pre-Pre-Testing~~<br>
 ~~17.03		Afternoon Pre-Test~~<br>
 ~~18-21.03 	Testing with friends and colleagues (record it!)~~<br>
