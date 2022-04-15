@@ -21,6 +21,9 @@ The core concept and design was created in Figma by two UX / UI Designers in the
 
 * [UX Research Documentation](https://github.com/gina6/STUWE2/blob/main/researchDocs.md)
 
+### UX-Research
+Alongside the design and development process one of our team members conducted UX-Research. Find all the insights from the UX-Research [here](https://github.com/gina6/STUWE2/tree/main/ux-research).
+
 ## Technologies and Frameworks
 
 We used [Vue.js](https://vuejs.org/) with [Nuxt3.js](https://v3.nuxtjs.org/) as Frameworks. For the socket connection we used the [socket.io](https://socket.io/) library. To read the gyroscope data we used the [VueUse](https://vueuse.org/) library.
@@ -34,7 +37,6 @@ The deployment runs via [Heroku](https://www.heroku.com/).
 ### Sequence Diagram
 
 ![Sequenzdiagramm](https://user-images.githubusercontent.com/58468359/161768419-162477fb-279c-4f14-b815-5bc7d2602b7f.png)
-
 
 
 ## Gameplay Images
