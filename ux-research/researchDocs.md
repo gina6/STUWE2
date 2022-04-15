@@ -15,7 +15,8 @@ It's a browser based single and multiplayer game – 1-4 Players.
 The setup to play would be: Use any device (e.g. Smart TV, Laptop, … it just needs an internet browser) as a screen and one or more smartphones as controllers.
 
 
-![](/kuglespil.png)
+![kuglespil](https://user-images.githubusercontent.com/58468359/163547624-18e77e40-74f8-4caa-9a95-b8b23cb9ceb6.png)
+
 
 ## Research Questions
 
@@ -62,10 +63,10 @@ The design concept, the wireframes and the prototypes in all its iterations can 
 The user tests were performed in five iterations. After each iteration, the feedback was given to the designers and programmers to implement the analyzed results.
 The first to third test was conducted internally with four colleagues to review the initial design ideas. For the fourth and fifth test we used overall seven external test participants, which met the criteria listed in the next section below.
 For the external user test
-<br><br>The whole research plan can be viewed here: [Research Plan](https://github.com/gina6/STUWE2/blob/main/researchPlan.md)
+<br><br>The whole research plan can be viewed here: [Research Plan](https://github.com/gina6/STUWE2/blob/main/ux-research/researchPlan.md)
 
 <br>
-A breakdown of all major changes can be found in [this Figma File](https://www.figma.com/file/SvU34EUYjpnpFq1tZPvfUH/STUWEUX2?node-id=548%3A777)
+A breakdown of all major changes can be found in this Figma File: https://www.figma.com/file/SvU34EUYjpnpFq1tZPvfUH/STUWEUX2?node-id=548%3A777
 
 ### Participant Description
 Test participants should have some technical knowledge with a smartphone. Should have played games before – mobile games is fine. German or English speaking. Age or gender irrelevant but at best balanced.
