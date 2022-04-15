@@ -20,7 +20,8 @@ To control the ball, just tilt your connected smartphone which is using the devi
 It's a browser based single and multiplayer game – 1-4 Players.
 The setup to play would be: Use any device (e.g. Smart TV, Laptop, … it just needs an internet browser) as a screen and one or more smartphones as controllers.
 <br><br>
-![](../../../../Mobile Documents/com~apple~CloudDocs/HSLU/UX Research/kuglespil.png)
+![kuglespil](https://user-images.githubusercontent.com/58468359/163548058-cb681eee-da4d-4612-ae05-47c6358d81c7.png)
+
 
 ## Research Questions
 | Topic | Question | Priority | 
