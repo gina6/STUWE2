@@ -8,7 +8,7 @@ The project was created in a course of six weeks during the module *Studio Web a
 ## How to play
 Open this on a Desktop (preferably Chrome): https://thefasterone.herokuapp.com/
 
-Scan the QR-Code with up to four Android mobile devices (no than four though).
+Scan the QR-Code with up to four Android mobile devices (not more than four).
 
 ## Design/UX
 The core concept and design was created in Figma by two UX / UI Designers in their module *Studio UX Design 2*.
